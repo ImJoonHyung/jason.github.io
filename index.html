@@ -267,24 +267,142 @@
         }
         
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            
+            .class-info {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .class-schedule {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .time-slot {
+                padding: 15px;
+            }
+            
+            .time-slot h4 {
+                font-size: 1em;
+                margin-bottom: 8px;
+            }
+            
+            .time-slot p {
+                font-size: 0.85em;
+                line-height: 1.4;
+            }
+            
+            .calendar {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .calendar-header {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            
+            .calendar h4 {
+                font-size: 1em !important;
+                margin-bottom: 10px !important;
+            }
+            
             .calendar-grid {
-                gap: 5px;
+                gap: 3px;
+            }
+            
+            .day-header {
+                padding: 8px 4px;
+                font-size: 0.8em;
+                border-radius: 4px;
             }
             
             .day {
-                min-height: 45px;
-                padding: 8px 5px;
-                font-size: 0.9em;
+                min-height: 50px;
+                padding: 8px 4px;
+                font-size: 0.8em;
+                border-radius: 6px;
+                line-height: 1.2;
             }
             
-            .day.class-day::after,
-            .day.vacation::after {
-                font-size: 0.6em;
+            .day br {
+                line-height: 0.5;
             }
             
             .legend {
                 flex-direction: column;
                 align-items: center;
+                gap: 10px;
+                margin-top: 15px;
+            }
+            
+            .legend-item {
+                padding: 6px 10px;
+                font-size: 0.9em;
+            }
+            
+            .legend-color {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .price-info {
+                padding: 20px 15px;
+                margin-top: 20px;
+            }
+            
+            .price-info h3 {
+                font-size: 1.4em;
+                margin-bottom: 12px;
+            }
+            
+            .price-info p {
+                font-size: 1em;
+                margin-bottom: 8px;
+            }
+            
+            .contact-info {
+                padding: 20px 15px;
+                margin-top: 20px;
+            }
+            
+            .contact-info h3 {
+                font-size: 1.3em;
+                margin-bottom: 12px;
+            }
+            
+            .contact-info p {
+                font-size: 1em;
+                margin-bottom: 5px;
+            }
+            
+            .highlight {
+                padding: 1px 6px;
+                font-size: 0.95em;
             }
         }
     </style>
