@@ -232,6 +232,56 @@
         background: linear-gradient(135deg, #a29bfe, #6c5ce7);
       }
 
+      .calendar-container {
+        position: relative;
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .calendar-navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .nav-button {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .nav-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      .nav-button:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .calendar-month {
+        display: none;
+      }
+
+      .calendar-month.active {
+        display: block;
+      }
+
       .price-info {
         background: linear-gradient(135deg, #00b894, #00a085);
         color: white;
@@ -446,21 +496,34 @@
             </div>
           </div>
 
-          <div class="calendar">
+          <div class="calendar-container">
             <div class="calendar-header">초등부 일정표</div>
 
-            <!-- 7월 달력 -->
-            <div style="margin-bottom: 30px">
+            <div class="calendar-navigation">
+              <button
+                class="nav-button"
+                onclick="prevMonth('elementary')"
+                id="elementary-prev"
+              >
+                ‹
+              </button>
               <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
+                id="elementary-month-title"
+                style="color: #2c3e50; font-size: 1.2em; margin: 0"
               >
                 📅 7월
               </h4>
+              <button
+                class="nav-button"
+                onclick="nextMonth('elementary')"
+                id="elementary-next"
+              >
+                ›
+              </button>
+            </div>
+
+            <!-- 7월 달력 -->
+            <div class="calendar-month active" id="elementary-july">
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -513,17 +576,7 @@
             </div>
 
             <!-- 8월 달력 -->
-            <div>
-              <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
-              >
-                📅 8월
-              </h4>
+            <div class="calendar-month" id="elementary-august">
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -619,21 +672,34 @@
             </div>
           </div>
 
-          <div class="calendar">
+          <div class="calendar-container">
             <div class="calendar-header">중등부 일정표</div>
 
-            <!-- 7월 달력 -->
-            <div style="margin-bottom: 30px">
+            <div class="calendar-navigation">
+              <button
+                class="nav-button"
+                onclick="prevMonth('middle')"
+                id="middle-prev"
+              >
+                ‹
+              </button>
               <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
+                id="middle-month-title"
+                style="color: #2c3e50; font-size: 1.2em; margin: 0"
               >
                 📅 7월
               </h4>
+              <button
+                class="nav-button"
+                onclick="nextMonth('middle')"
+                id="middle-next"
+              >
+                ›
+              </button>
+            </div>
+
+            <!-- 7월 달력 -->
+            <div class="calendar-month active" id="middle-july">
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -686,17 +752,7 @@
             </div>
 
             <!-- 8월 달력 -->
-            <div>
-              <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
-              >
-                📅 8월
-              </h4>
+            <div class="calendar-month" id="middle-august">
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -814,5 +870,67 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // 달력 상태 관리
+      const calendarState = {
+        elementary: {
+          currentMonth: 0, // 0: 7월, 1: 8월
+          months: ["📅 7월", "📅 8월"],
+          monthIds: ["elementary-july", "elementary-august"],
+        },
+        middle: {
+          currentMonth: 0, // 0: 7월, 1: 8월
+          months: ["📅 7월", "📅 8월"],
+          monthIds: ["middle-july", "middle-august"],
+        },
+      };
+
+      function updateCalendar(type) {
+        const state = calendarState[type];
+        const title = document.getElementById(`${type}-month-title`);
+        const prevBtn = document.getElementById(`${type}-prev`);
+        const nextBtn = document.getElementById(`${type}-next`);
+
+        // 제목 업데이트
+        title.textContent = state.months[state.currentMonth];
+
+        // 버튼 상태 업데이트
+        prevBtn.disabled = state.currentMonth === 0;
+        nextBtn.disabled = state.currentMonth === state.months.length - 1;
+
+        // 달력 표시 업데이트
+        state.monthIds.forEach((id, index) => {
+          const monthElement = document.getElementById(id);
+          if (index === state.currentMonth) {
+            monthElement.classList.add("active");
+          } else {
+            monthElement.classList.remove("active");
+          }
+        });
+      }
+
+      function prevMonth(type) {
+        const state = calendarState[type];
+        if (state.currentMonth > 0) {
+          state.currentMonth--;
+          updateCalendar(type);
+        }
+      }
+
+      function nextMonth(type) {
+        const state = calendarState[type];
+        if (state.currentMonth < state.months.length - 1) {
+          state.currentMonth++;
+          updateCalendar(type);
+        }
+      }
+
+      // 초기 상태 설정
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCalendar("elementary");
+        updateCalendar("middle");
+      });
+    </script>
   </body>
 </html>
