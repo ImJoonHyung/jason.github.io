@@ -16,6 +16,7 @@
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         padding: 20px;
+        scroll-behavior: smooth;
       }
 
       .container {
@@ -499,6 +500,68 @@
         border-radius: 15px;
         font-weight: bold;
       }
+
+      /* 스크롤 애니메이션 효과 */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .slide-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .scale-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+
+      .scale-in.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* 지연 애니메이션 */
+      .delay-1 {
+        transition-delay: 0.1s;
+      }
+
+      .delay-2 {
+        transition-delay: 0.2s;
+      }
+
+      .delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      .delay-4 {
+        transition-delay: 0.4s;
+      }
     </style>
   </head>
   <body>
@@ -511,21 +574,21 @@
       <div class="content">
         <!-- 초등부 섹션 -->
         <div class="class-section">
-          <h2 class="section-title">📚 초등부 특강 (월수금)</h2>
+          <h2 class="section-title fade-in">📚 초등부 특강 (월수금)</h2>
 
-          <div class="class-info">
+          <div class="class-info slide-in-left">
             <div class="class-schedule">
-              <div class="time-slot">
+              <div class="time-slot scale-in delay-1">
                 <h4>🅰️ 파닉스 마스터 특강</h4>
                 <p>⏰ 9:00-9:50 (50분)</p>
                 <p>📖 읽기 자신감 UP! (1-2학년 추천)</p>
               </div>
-              <div class="time-slot">
+              <div class="time-slot scale-in delay-2">
                 <h4>🅱️ 라이팅 기초 특강</h4>
                 <p>⏰ 10:00-10:50 (50분)</p>
                 <p>✍️ 문장 쓰기부터 단락까지 (3-4학년 추천)</p>
               </div>
-              <div class="time-slot">
+              <div class="time-slot scale-in delay-3">
                 <h4>🅾️ 기초 스피킹 특강</h4>
                 <p>⏰ 11:00-11:50 (50분)</p>
                 <p>🎯 재미있게 영어로 대화하고 표현하는 시간! (1-2학년 추천)</p>
@@ -533,7 +596,7 @@
             </div>
           </div>
 
-          <div class="calendar">
+          <div class="calendar fade-in">
             <div class="calendar-header">초등부 일정표</div>
 
             <!-- 달력 네비게이션 -->
@@ -692,16 +755,16 @@
 
         <!-- 중등부 섹션 -->
         <div class="class-section">
-          <h2 class="section-title">🎓 중등부 특강 (화목)</h2>
+          <h2 class="section-title fade-in">🎓 중등부 특강 (화목)</h2>
 
-          <div class="class-info">
+          <div class="class-info slide-in-right">
             <div class="class-schedule">
-              <div class="time-slot">
+              <div class="time-slot scale-in delay-1">
                 <h4>🅰️ 핵심 문법 완성반</h4>
                 <p>⏰ 9:00-10:20 (80분)</p>
                 <p>📚 중학 필수 문법 총정리</p>
               </div>
-              <div class="time-slot">
+              <div class="time-slot scale-in delay-2">
                 <h4>🅱️ 구문 해석 완성반</h4>
                 <p>⏰ 10:30-11:50 (80분)</p>
                 <p>🔍 중등/고등 리딩의 필수 기초!</p>
@@ -709,7 +772,7 @@
             </div>
           </div>
 
-          <div class="calendar">
+          <div class="calendar fade-in">
             <div class="calendar-header">중등부 일정표</div>
 
             <!-- 달력 네비게이션 -->
@@ -867,7 +930,7 @@
         </div>
 
         <!-- 수강료 정보 -->
-        <div class="price-info">
+        <div class="price-info slide-in-left">
           <h3>💰 수강료 안내 (각 반별)</h3>
           <p>
             <span class="highlight">초등부</span> 8회 수업 :
@@ -883,7 +946,7 @@
         </div>
 
         <!-- 연락처 -->
-        <div class="contact-info">
+        <div class="contact-info slide-in-right">
           <h3>📞 문의 및 신청</h3>
           <p>🏫 헤이영어</p>
           <p>
@@ -894,8 +957,16 @@
               style="color: white; text-decoration: underline"
               >거여세신종합상가 610호</a
             >
-            <span style="font-size: 0.9em; opacity: 0.8"
-              >(위치보기)</span
+            <a
+              href="https://map.naver.com/p/search/%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4%EA%B5%90%EC%8A%B5%EC%86%8C/place/1478910981?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place&c=15.00,0,0,0,dh"
+              target="_blank"
+              style="
+                color: white;
+                text-decoration: underline;
+                font-size: 0.9em;
+                opacity: 0.8;
+              "
+              >(위치보기 - 클릭하세요)</a
             >
           </p>
           <p>
@@ -912,7 +983,7 @@
               >문자보내기</a
             >
             <br /><span style="font-size: 0.9em; opacity: 0.8"
-              >(전화/문자)</span
+              >(전화/문자 - 클릭하세요)</span
             >
           </p>
           <p style="margin-top: 15px; font-weight: bold">
@@ -1029,6 +1100,40 @@
           changeMonth("elementary", 1);
           changeMonth("middle", 1);
         }
+      });
+
+      // 스크롤 애니메이션 함수
+      function handleScrollAnimation() {
+        const elements = document.querySelectorAll(
+          ".fade-in, .slide-in-left, .slide-in-right, .scale-in"
+        );
+
+        elements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          // 요소가 화면의 80% 지점에 도달하면 애니메이션 시작
+          if (elementTop < windowHeight * 0.8) {
+            element.classList.add("visible");
+          }
+        });
+      }
+
+      // 스크롤 이벤트 리스너 추가 (쓰로틀링 적용)
+      let isScrolling = false;
+      window.addEventListener("scroll", function () {
+        if (!isScrolling) {
+          requestAnimationFrame(function () {
+            handleScrollAnimation();
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      });
+
+      // 페이지 로드 시 애니메이션 체크
+      window.addEventListener("load", function () {
+        handleScrollAnimation();
       });
     </script>
   </body>
