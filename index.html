@@ -1,714 +1,634 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여름방학 특강 안내</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        padding: 20px;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-      }
-
-      .header {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
-        text-align: center;
-        padding: 40px 20px;
-        position: relative;
-      }
-
-      .header::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="star" patternUnits="userSpaceOnUse" width="20" height="20"><polygon fill="rgba(255,255,255,0.1)" points="10,2 12,8 18,8 13,12 15,18 10,14 5,18 7,12 2,8 8,8"/></pattern></defs><rect width="100" height="100" fill="url(%23star)"/></svg>')
-          repeat;
-      }
-
-      .header h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .header p {
-        font-size: 1.2em;
-        opacity: 0.9;
-        position: relative;
-        z-index: 1;
-      }
-
-      .content {
-        padding: 40px;
-      }
-
-      .class-section {
-        margin-bottom: 50px;
-      }
-
-      .section-title {
-        font-size: 2em;
-        color: #2c3e50;
-        text-align: center;
-        margin-bottom: 30px;
-        position: relative;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        border-radius: 2px;
-      }
-
-      .class-info {
-        background: #f8f9fa;
-        border-radius: 15px;
-        padding: 30px;
-        margin-bottom: 30px;
-        border-left: 5px solid #ff6b6b;
-      }
-
-      .class-schedule {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-bottom: 30px;
-      }
-
-      .time-slot {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-
-      .time-slot:hover {
-        transform: translateY(-5px);
-      }
-
-      .time-slot h4 {
-        color: #2c3e50;
-        font-size: 1.1em;
-        margin-bottom: 10px;
-      }
-
-      .time-slot p {
-        color: #7f8c8d;
-        font-size: 0.9em;
-      }
-
-      .calendar {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .calendar-header {
-        text-align: center;
-        font-size: 1.5em;
-        color: #2c3e50;
-        margin-bottom: 20px;
-        font-weight: bold;
-      }
-
-      .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 10px;
-        margin-bottom: 20px;
-      }
-
-      .day-header {
-        text-align: center;
-        font-weight: bold;
-        color: #7f8c8d;
-        padding: 10px;
-        background: #ecf0f1;
-        border-radius: 8px;
-      }
-
-      .day {
-        text-align: center;
-        padding: 15px 10px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        position: relative;
-        min-height: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .day:hover {
-        transform: scale(1.05);
-      }
-
-      .day.disabled {
-        color: #bdc3c7;
-        background: #f8f9fa;
-      }
-
-      .day.class-day {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
-        font-weight: bold;
-        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-      }
-
-      .day.holiday {
-        background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-        color: #2d3436;
-        font-weight: bold;
-      }
-
-      .day.vacation {
-        background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-        color: white;
-        font-weight: bold;
-      }
-
-      .legend {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 20px;
-        flex-wrap: wrap;
-      }
-
-      .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        background: #f8f9fa;
-        border-radius: 20px;
-      }
-
-      .legend-color {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-      }
-
-      .legend-color.class {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-      }
-      .legend-color.holiday {
-        background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-      }
-      .legend-color.vacation {
-        background: linear-gradient(135deg, #a29bfe, #6c5ce7);
-      }
-
-      .price-info {
-        background: linear-gradient(135deg, #00b894, #00a085);
-        color: white;
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      .price-info h3 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-      }
-
-      .price-info p {
-        font-size: 1.1em;
-        opacity: 0.9;
-      }
-
-      .contact-info {
-        background: #2c3e50;
-        color: white;
-        padding: 30px;
-        text-align: center;
-        margin-top: 30px;
-        border-radius: 15px;
-      }
-
-      .contact-info h3 {
-        font-size: 1.5em;
-        margin-bottom: 15px;
-      }
-
-      .highlight {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
-        padding: 2px 8px;
-        border-radius: 15px;
-        font-weight: bold;
-      }
-
-      @media (max-width: 768px) {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="star" patternUnits="userSpaceOnUse" width="20" height="20"><polygon fill="rgba(255,255,255,0.1)" points="10,2 12,8 18,8 13,12 15,18 10,14 5,18 7,12 2,8 8,8"/></pattern></defs><rect width="100" height="100" fill="url(%23star)"/></svg>') repeat;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .class-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 2px;
+        }
+        
+        .class-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .class-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .time-slot {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .time-slot:hover {
+            transform: translateY(-5px);
+        }
+        
+        .time-slot h4 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .time-slot p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .calendar {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-header {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
         .calendar-grid {
-          gap: 5px;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
         }
-
+        
+        .day-header {
+            text-align: center;
+            font-weight: bold;
+            color: #7f8c8d;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+        
         .day {
-          min-height: 45px;
-          padding: 8px 5px;
-          font-size: 0.9em;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-
-        .day.class-day::after,
-        .day.vacation::after {
-          font-size: 0.6em;
+        
+        .day:hover {
+            transform: scale(1.05);
         }
-
+        
+        .day.disabled {
+            color: #bdc3c7;
+            background: #f8f9fa;
+        }
+        
+        .day.class-day {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+        
+        .day.holiday {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            color: #2d3436;
+            font-weight: bold;
+        }
+        
+        .day.vacation {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            font-weight: bold;
+        }
+        
         .legend {
-          flex-direction: column;
-          align-items: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
-      }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #f8f9fa;
+            border-radius: 20px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+        
+        .legend-color.class { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .legend-color.holiday { background: linear-gradient(135deg, #ffeaa7, #fdcb6e); }
+        .legend-color.vacation { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+        
+        .price-info {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .price-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .price-info p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 15px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-grid {
+                gap: 5px;
+            }
+            
+            .day {
+                min-height: 45px;
+                padding: 8px 5px;
+                font-size: 0.9em;
+            }
+            
+            .day.class-day::after,
+            .day.vacation::after {
+                font-size: 0.6em;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="header">
-        <h1>🌟 여름방학 특강 안내 🌟</h1>
-        <p>2025년 여름, 실력 향상의 기회를 놓치지 마세요!</p>
-      </div>
-
-      <div class="content">
-        <!-- 초등부 섹션 -->
-        <div class="class-section">
-          <h2 class="section-title">📚 초등부 특강 (월수금)</h2>
-
-          <div class="class-info">
-            <div class="class-schedule">
-              <div class="time-slot">
-                <h4>🅰️ 파닉스 마스터 특강</h4>
-                <p>⏰ 9:00-9:50 (50분)</p>
-                <p>📖 읽기 자신감 UP! (1-2학년 추천)</p>
-              </div>
-              <div class="time-slot">
-                <h4>🅱️ 라이팅 기초 특강</h4>
-                <p>⏰ 10:00-10:50 (50분)</p>
-                <p>✍️ 문장 쓰기부터 단락까지 (3-4학년 추천)</p>
-              </div>
-              <div class="time-slot">
-                <h4>🅾️ 개인별 맞춤 단어 특강</h4>
-                <p>⏰ 11:00-11:50 (50분)</p>
-                <p>🎯 개인 교재로 맞춤 관리!</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="calendar">
-            <div class="calendar-header">초등부 일정표</div>
-
-            <!-- 7월 달력 -->
-            <div style="margin-bottom: 30px">
-              <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
-              >
-                📅 7월
-              </h4>
-              <div class="calendar-grid">
-                <div class="day-header">일</div>
-                <div class="day-header">월</div>
-                <div class="day-header">화</div>
-                <div class="day-header">수</div>
-                <div class="day-header">목</div>
-                <div class="day-header">금</div>
-                <div class="day-header">토</div>
-
-                <div class="day disabled">29</div>
-                <div class="day disabled">30</div>
-                <div class="day disabled">1</div>
-                <div class="day disabled">2</div>
-                <div class="day disabled">3</div>
-                <div class="day disabled">4</div>
-                <div class="day disabled">5</div>
-
-                <div class="day disabled">6</div>
-                <div class="day disabled">7</div>
-                <div class="day disabled">8</div>
-                <div class="day disabled">9</div>
-                <div class="day disabled">10</div>
-                <div class="day disabled">11</div>
-                <div class="day disabled">12</div>
-
-                <div class="day disabled">13</div>
-                <div class="day disabled">14</div>
-                <div class="day disabled">15</div>
-                <div class="day disabled">16</div>
-                <div class="day disabled">17</div>
-                <div class="day disabled">18</div>
-                <div class="day disabled">19</div>
-
-                <div class="day disabled">20</div>
-                <div class="day disabled">21</div>
-                <div class="day disabled">22</div>
-                <div class="day disabled">23</div>
-                <div class="day disabled">24</div>
-                <div class="day disabled">25</div>
-                <div class="day disabled">26</div>
-
-                <div class="day disabled">27</div>
-                <div class="day class-day">28<br />1회</div>
-                <div class="day disabled">29</div>
-                <div class="day class-day">30<br />2회</div>
-                <div class="day disabled">31</div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-              </div>
-            </div>
-
-            <!-- 8월 달력 -->
-            <div>
-              <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
-              >
-                📅 8월
-              </h4>
-              <div class="calendar-grid">
-                <div class="day-header">일</div>
-                <div class="day-header">월</div>
-                <div class="day-header">화</div>
-                <div class="day-header">수</div>
-                <div class="day-header">목</div>
-                <div class="day-header">금</div>
-                <div class="day-header">토</div>
-
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day class-day">1<br />3회</div>
-                <div class="day disabled">2</div>
-
-                <div class="day disabled">3</div>
-                <div class="day class-day">4<br />4회</div>
-                <div class="day disabled">5</div>
-                <div class="day class-day">6<br />5회</div>
-                <div class="day disabled">7</div>
-                <div class="day vacation">8<br />휴강</div>
-                <div class="day disabled">9</div>
-
-                <div class="day disabled">10</div>
-                <div class="day class-day">11<br />6회</div>
-                <div class="day disabled">12</div>
-                <div class="day class-day">13<br />7회</div>
-                <div class="day disabled">14</div>
-                <div class="day holiday">15<br />광복절</div>
-                <div class="day disabled">16</div>
-
-                <div class="day disabled">17</div>
-                <div class="day class-day">18<br />8회</div>
-                <div class="day disabled">19</div>
-                <div class="day disabled">20</div>
-                <div class="day disabled">21</div>
-                <div class="day disabled">22</div>
-                <div class="day disabled">23</div>
-
-                <div class="day disabled">24</div>
-                <div class="day disabled">25</div>
-                <div class="day disabled">26</div>
-                <div class="day disabled">27</div>
-                <div class="day disabled">28</div>
-                <div class="day disabled">29</div>
-                <div class="day disabled">30</div>
-
-                <div class="day disabled">31</div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-              </div>
-            </div>
-
-            <div class="legend">
-              <div class="legend-item">
-                <div class="legend-color class"></div>
-                <span>수업일</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color vacation"></div>
-                <span>휴강일</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color holiday"></div>
-                <span>공휴일</span>
-              </div>
-            </div>
-          </div>
+        <div class="header">
+            <h1>🌟 여름방학 특강 안내 🌟</h1>
+            <p>2025년 여름, 실력 향상의 기회를 놓치지 마세요!</p>
         </div>
-
-        <!-- 중등부 섹션 -->
-        <div class="class-section">
-          <h2 class="section-title">🎓 중등부 특강 (화목)</h2>
-
-          <div class="class-info">
-            <div class="class-schedule">
-              <div class="time-slot">
-                <h4>🅰️ 핵심 문법 완성반</h4>
-                <p>⏰ 9:00-10:20 (80분)</p>
-                <p>📚 중학 필수 문법 총정리</p>
-              </div>
-              <div class="time-slot">
-                <h4>🅱️ 구문 해석 완성반</h4>
-                <p>⏰ 10:30-11:50 (80분)</p>
-                <p>🔍 중등/고등 리딩의 필수 기초!</p>
-              </div>
+        
+        <div class="content">
+            <!-- 초등부 섹션 -->
+            <div class="class-section">
+                <h2 class="section-title">📚 초등부 특강 (월수금)</h2>
+                
+                <div class="class-info">
+                    <div class="class-schedule">
+                        <div class="time-slot">
+                            <h4>🅰️ 파닉스 마스터 특강</h4>
+                            <p>⏰ 9:00-9:50 (50분)</p>
+                            <p>📖 읽기 자신감 UP! (1-2학년 추천)</p>
+                        </div>
+                        <div class="time-slot">
+                            <h4>🅱️ 라이팅 기초 특강</h4>
+                            <p>⏰ 10:00-10:50 (50분)</p>
+                            <p>✍️ 문장 쓰기부터 단락까지 (3-4학년 추천)</p>
+                        </div>
+                        <div class="time-slot">
+                            <h4>🅾️ 개인별 맞춤 단어 특강</h4>
+                            <p>⏰ 11:00-11:50 (50분)</p>
+                            <p>🎯 개인 교재로 맞춤 관리!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calendar">
+                    <div class="calendar-header">초등부 일정표</div>
+                    
+                    <!-- 7월 달력 -->
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="text-align: center; color: #2c3e50; margin-bottom: 15px; font-size: 1.2em;">📅 7월</h4>
+                        <div class="calendar-grid">
+                            <div class="day-header">일</div>
+                            <div class="day-header">월</div>
+                            <div class="day-header">화</div>
+                            <div class="day-header">수</div>
+                            <div class="day-header">목</div>
+                            <div class="day-header">금</div>
+                            <div class="day-header">토</div>
+                            
+                            <div class="day disabled">29</div>
+                            <div class="day disabled">30</div>
+                            <div class="day disabled">1</div>
+                            <div class="day disabled">2</div>
+                            <div class="day disabled">3</div>
+                            <div class="day disabled">4</div>
+                            <div class="day disabled">5</div>
+                            
+                            <div class="day disabled">6</div>
+                            <div class="day disabled">7</div>
+                            <div class="day disabled">8</div>
+                            <div class="day disabled">9</div>
+                            <div class="day disabled">10</div>
+                            <div class="day disabled">11</div>
+                            <div class="day disabled">12</div>
+                            
+                            <div class="day disabled">13</div>
+                            <div class="day disabled">14</div>
+                            <div class="day disabled">15</div>
+                            <div class="day disabled">16</div>
+                            <div class="day disabled">17</div>
+                            <div class="day disabled">18</div>
+                            <div class="day disabled">19</div>
+                            
+                            <div class="day disabled">20</div>
+                            <div class="day disabled">21</div>
+                            <div class="day disabled">22</div>
+                            <div class="day disabled">23</div>
+                            <div class="day disabled">24</div>
+                            <div class="day disabled">25</div>
+                            <div class="day disabled">26</div>
+                            
+                            <div class="day disabled">27</div>
+                            <div class="day class-day">28<br>1회</div>
+                            <div class="day disabled">29</div>
+                            <div class="day class-day">30<br>2회</div>
+                            <div class="day disabled">31</div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 8월 달력 -->
+                    <div>
+                        <h4 style="text-align: center; color: #2c3e50; margin-bottom: 15px; font-size: 1.2em;">📅 8월</h4>
+                        <div class="calendar-grid">
+                            <div class="day-header">일</div>
+                            <div class="day-header">월</div>
+                            <div class="day-header">화</div>
+                            <div class="day-header">수</div>
+                            <div class="day-header">목</div>
+                            <div class="day-header">금</div>
+                            <div class="day-header">토</div>
+                            
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day class-day">1<br>3회</div>
+                            <div class="day disabled">2</div>
+                            
+                            <div class="day disabled">3</div>
+                            <div class="day class-day">4<br>4회</div>
+                            <div class="day disabled">5</div>
+                            <div class="day class-day">6<br>5회</div>
+                            <div class="day vacation">7<br>휴강</div>
+                            <div class="day vacation">8<br>휴강</div>
+                            <div class="day disabled">9</div>
+                            
+                            <div class="day disabled">10</div>
+                            <div class="day class-day">11<br>6회</div>
+                            <div class="day disabled">12</div>
+                            <div class="day class-day">13<br>7회</div>
+                            <div class="day disabled">14</div>
+                            <div class="day holiday">15<br>광복절</div>
+                            <div class="day disabled">16</div>
+                            
+                            <div class="day disabled">17</div>
+                            <div class="day class-day">18<br>8회</div>
+                            <div class="day disabled">19</div>
+                            <div class="day disabled">20</div>
+                            <div class="day disabled">21</div>
+                            <div class="day disabled">22</div>
+                            <div class="day disabled">23</div>
+                            
+                            <div class="day disabled">24</div>
+                            <div class="day disabled">25</div>
+                            <div class="day disabled">26</div>
+                            <div class="day disabled">27</div>
+                            <div class="day disabled">28</div>
+                            <div class="day disabled">29</div>
+                            <div class="day disabled">30</div>
+                            
+                            <div class="day disabled">31</div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color class"></div>
+                            <span>수업일</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color vacation"></div>
+                            <span>휴강일</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color holiday"></div>
+                            <span>공휴일</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div class="calendar">
-            <div class="calendar-header">중등부 일정표</div>
-
-            <!-- 7월 달력 -->
-            <div style="margin-bottom: 30px">
-              <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
-              >
-                📅 7월
-              </h4>
-              <div class="calendar-grid">
-                <div class="day-header">일</div>
-                <div class="day-header">월</div>
-                <div class="day-header">화</div>
-                <div class="day-header">수</div>
-                <div class="day-header">목</div>
-                <div class="day-header">금</div>
-                <div class="day-header">토</div>
-
-                <div class="day disabled">29</div>
-                <div class="day disabled">30</div>
-                <div class="day disabled">1</div>
-                <div class="day disabled">2</div>
-                <div class="day disabled">3</div>
-                <div class="day disabled">4</div>
-                <div class="day disabled">5</div>
-
-                <div class="day disabled">6</div>
-                <div class="day disabled">7</div>
-                <div class="day disabled">8</div>
-                <div class="day disabled">9</div>
-                <div class="day disabled">10</div>
-                <div class="day disabled">11</div>
-                <div class="day disabled">12</div>
-
-                <div class="day disabled">13</div>
-                <div class="day disabled">14</div>
-                <div class="day disabled">15</div>
-                <div class="day disabled">16</div>
-                <div class="day disabled">17</div>
-                <div class="day disabled">18</div>
-                <div class="day disabled">19</div>
-
-                <div class="day disabled">20</div>
-                <div class="day disabled">21</div>
-                <div class="day class-day">22<br />1회</div>
-                <div class="day disabled">23</div>
-                <div class="day class-day">24<br />2회</div>
-                <div class="day disabled">25</div>
-                <div class="day disabled">26</div>
-
-                <div class="day disabled">27</div>
-                <div class="day disabled">28</div>
-                <div class="day class-day">29<br />3회</div>
-                <div class="day disabled">30</div>
-                <div class="day class-day">31<br />4회</div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-              </div>
+            
+            <!-- 중등부 섹션 -->
+            <div class="class-section">
+                <h2 class="section-title">🎓 중등부 특강 (화목)</h2>
+                
+                <div class="class-info">
+                    <div class="class-schedule">
+                        <div class="time-slot">
+                            <h4>🅰️ 핵심 문법 완성반</h4>
+                            <p>⏰ 9:00-10:20 (80분)</p>
+                            <p>📚 중학 필수 문법 총정리</p>
+                        </div>
+                        <div class="time-slot">
+                            <h4>🅱️ 구문 해석 마스터반</h4>
+                            <p>⏰ 10:30-11:50 (80분)</p>
+                            <p>🔍 렉쳐 스타일로 체계적 학습</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calendar">
+                    <div class="calendar-header">중등부 일정표</div>
+                    
+                    <!-- 7월 달력 -->
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="text-align: center; color: #2c3e50; margin-bottom: 15px; font-size: 1.2em;">📅 7월</h4>
+                        <div class="calendar-grid">
+                            <div class="day-header">일</div>
+                            <div class="day-header">월</div>
+                            <div class="day-header">화</div>
+                            <div class="day-header">수</div>
+                            <div class="day-header">목</div>
+                            <div class="day-header">금</div>
+                            <div class="day-header">토</div>
+                            
+                            <div class="day disabled">29</div>
+                            <div class="day disabled">30</div>
+                            <div class="day disabled">1</div>
+                            <div class="day disabled">2</div>
+                            <div class="day disabled">3</div>
+                            <div class="day disabled">4</div>
+                            <div class="day disabled">5</div>
+                            
+                            <div class="day disabled">6</div>
+                            <div class="day disabled">7</div>
+                            <div class="day disabled">8</div>
+                            <div class="day disabled">9</div>
+                            <div class="day disabled">10</div>
+                            <div class="day disabled">11</div>
+                            <div class="day disabled">12</div>
+                            
+                            <div class="day disabled">13</div>
+                            <div class="day disabled">14</div>
+                            <div class="day disabled">15</div>
+                            <div class="day disabled">16</div>
+                            <div class="day disabled">17</div>
+                            <div class="day disabled">18</div>
+                            <div class="day disabled">19</div>
+                            
+                            <div class="day disabled">20</div>
+                            <div class="day disabled">21</div>
+                            <div class="day class-day">22<br>1회</div>
+                            <div class="day disabled">23</div>
+                            <div class="day class-day">24<br>2회</div>
+                            <div class="day disabled">25</div>
+                            <div class="day disabled">26</div>
+                            
+                            <div class="day disabled">27</div>
+                            <div class="day disabled">28</div>
+                            <div class="day class-day">29<br>3회</div>
+                            <div class="day disabled">30</div>
+                            <div class="day class-day">31<br>4회</div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- 8월 달력 -->
+                    <div>
+                        <h4 style="text-align: center; color: #2c3e50; margin-bottom: 15px; font-size: 1.2em;">📅 8월</h4>
+                        <div class="calendar-grid">
+                            <div class="day-header">일</div>
+                            <div class="day-header">월</div>
+                            <div class="day-header">화</div>
+                            <div class="day-header">수</div>
+                            <div class="day-header">목</div>
+                            <div class="day-header">금</div>
+                            <div class="day-header">토</div>
+                            
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled">1</div>
+                            <div class="day disabled">2</div>
+                            
+                            <div class="day disabled">3</div>
+                            <div class="day disabled">4</div>
+                            <div class="day class-day">5<br>5회</div>
+                            <div class="day disabled">6</div>
+                            <div class="day vacation">7<br>휴강</div>
+                            <div class="day vacation">8<br>휴강</div>
+                            <div class="day disabled">9</div>
+                            
+                            <div class="day disabled">10</div>
+                            <div class="day disabled">11</div>
+                            <div class="day class-day">12<br>6회</div>
+                            <div class="day disabled">13</div>
+                            <div class="day class-day">14<br>7회</div>
+                            <div class="day class-day">15<br>8회</div>
+                            <div class="day disabled">16</div>
+                            
+                            <div class="day disabled">17</div>
+                            <div class="day disabled">18</div>
+                            <div class="day disabled">19</div>
+                            <div class="day disabled">20</div>
+                            <div class="day disabled">21</div>
+                            <div class="day disabled">22</div>
+                            <div class="day disabled">23</div>
+                            
+                            <div class="day disabled">24</div>
+                            <div class="day disabled">25</div>
+                            <div class="day disabled">26</div>
+                            <div class="day disabled">27</div>
+                            <div class="day disabled">28</div>
+                            <div class="day disabled">29</div>
+                            <div class="day disabled">30</div>
+                            
+                            <div class="day disabled">31</div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                            <div class="day disabled"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color class"></div>
+                            <span>수업일</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color vacation"></div>
+                            <span>휴강일</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color holiday"></div>
+                            <span>공휴일</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- 8월 달력 -->
-            <div>
-              <h4
-                style="
-                  text-align: center;
-                  color: #2c3e50;
-                  margin-bottom: 15px;
-                  font-size: 1.2em;
-                "
-              >
-                📅 8월
-              </h4>
-              <div class="calendar-grid">
-                <div class="day-header">일</div>
-                <div class="day-header">월</div>
-                <div class="day-header">화</div>
-                <div class="day-header">수</div>
-                <div class="day-header">목</div>
-                <div class="day-header">금</div>
-                <div class="day-header">토</div>
-
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled">1</div>
-                <div class="day disabled">2</div>
-
-                <div class="day disabled">3</div>
-                <div class="day disabled">4</div>
-                <div class="day class-day">5<br />5회</div>
-                <div class="day disabled">6</div>
-                <div class="day vacation">7<br />휴강</div>
-                <div class="day disabled">8</div>
-                <div class="day disabled">9</div>
-
-                <div class="day disabled">10</div>
-                <div class="day disabled">11</div>
-                <div class="day class-day">12<br />6회</div>
-                <div class="day disabled">13</div>
-                <div class="day class-day">14<br />7회</div>
-                <div class="day class-day">15<br />8회</div>
-                <div class="day disabled">16</div>
-
-                <div class="day disabled">17</div>
-                <div class="day disabled">18</div>
-                <div class="day disabled">19</div>
-                <div class="day disabled">20</div>
-                <div class="day disabled">21</div>
-                <div class="day disabled">22</div>
-                <div class="day disabled">23</div>
-
-                <div class="day disabled">24</div>
-                <div class="day disabled">25</div>
-                <div class="day disabled">26</div>
-                <div class="day disabled">27</div>
-                <div class="day disabled">28</div>
-                <div class="day disabled">29</div>
-                <div class="day disabled">30</div>
-
-                <div class="day disabled">31</div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-                <div class="day disabled"></div>
-              </div>
+            
+            <!-- 수강료 정보 -->
+            <div class="price-info">
+                <h3>💰 수강료 안내</h3>
+                <p><span class="highlight">초등부</span> 8회 수업 : <strong>100,000원</strong></p>
+                <p><span class="highlight">중등부</span> 8회 수업 : <strong>150,000원</strong></p>
+                <p style="margin-top: 15px; font-size: 0.9em;">※ 추천 학년 외 다른 학년도 수강 가능 ※</p>
             </div>
-
-            <div class="legend">
-              <div class="legend-item">
-                <div class="legend-color class"></div>
-                <span>수업일</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color vacation"></div>
-                <span>휴강일</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color holiday"></div>
-                <span>공휴일</span>
-              </div>
+            
+            <!-- 연락처 -->
+            <div class="contact-info">
+                <h3>📞 문의 및 신청</h3>
+                <p>🏫 헤이영어</p>
+                <p>📍 거여세신종합상가 610호</p>
+                <p>📱 전화 : 010.2490.0532</p>
+                <p style="margin-top: 15px; font-weight: bold;">지금 바로 신청하세요! 🎯</p>
             </div>
-          </div>
         </div>
-
-        <!-- 수강료 정보 -->
-        <div class="price-info">
-          <h3>💰 수강료 안내 (각 반별)</h3>
-          <p>
-            <span class="highlight">초등부</span> 8회 수업 :
-            <strong>100,000원</strong>
-          </p>
-          <p>
-            <span class="highlight">중등부</span> 8회 수업 :
-            <strong>150,000원</strong>
-          </p>
-          <p style="margin-top: 15px; font-size: 0.9em">
-            ※ 추천 학년 외 다른 학년도 수강 가능 ※
-          </p>
-        </div>
-
-        <!-- 연락처 -->
-        <div class="contact-info">
-          <h3>📞 문의 및 신청</h3>
-          <p>🏫 헤이영어교습소</p>
-          <p>
-            📍
-            <a
-              href="https://map.naver.com/p/search/%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4%EA%B5%90%EC%8A%B5%EC%86%8C/place/1478910981?placePath=/home?entry=pll&from=nx&fromNxList=true&fromPanelNum=2&timestamp=202506182030&locale=ko&svcName=map_pcv5&searchText=%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4%EA%B5%90%EC%8A%B5%EC%86%8C&searchType=place&c=15.00,0,0,0,dh"
-              target="_blank"
-              style="color: white; text-decoration: underline"
-              >거여세신종합상가 610호</a
-            >
-            📍<span style="font-size: 0.9em; opacity: 0.8"
-              >(지도 보기 - 클릭하세요)</span
-            >
-          </p>
-          <p>
-            📱 전화 :
-            <a
-              href="tel:01024900532"
-              style="color: white; text-decoration: underline"
-              >010.2490.0532</a
-            >
-            (<a
-              href="sms:01024900532"
-              style="color: white; text-decoration: underline"
-              >문자하기</a
-            >)
-            <br />
-            <span style="font-size: 0.9em; opacity: 0.8"
-              >(전화/문자 - 클릭하세요)</span
-            >
-          </p>
-          <p style="margin-top: 15px; font-weight: bold">
-            지금 바로 신청하세요! 🎯
-          </p>
-        </div>
-      </div>
     </div>
-  </body>
+</body>
 </html>
