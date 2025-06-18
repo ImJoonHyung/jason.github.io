@@ -3,37 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>여름방학 특강 안내 - 헤이영어</title>
-
-    <!-- Open Graph meta tags for social media sharing -->
-    <meta property="og:title" content="여름방학 특강 안내 - 헤이영어" />
-    <meta
-      property="og:description"
-      content="2025년 여름방학 초등부/중등부 영어 특강 안내. 파닉스, 라이팅, 문법, 구문해석 완성반으로 실력 향상의 기회를 놓치지 마세요!"
-    />
-    <meta property="og:image" content="./hey-english-logo.png" />
-    <meta property="og:url" content="https://www.heynow.kr" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="헤이영어" />
-
-    <!-- Twitter Card meta tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="여름방학 특강 안내 - 헤이영어" />
-    <meta
-      name="twitter:description"
-      content="2025년 여름방학 초등부/중등부 영어 특강 안내. 파닉스, 라이팅, 문법, 구문해석 완성반으로 실력 향상의 기회를 놓치지 마세요!"
-    />
-    <meta name="twitter:image" content="./hey-english-logo.png" />
-
-    <!-- Additional meta tags -->
-    <meta
-      name="description"
-      content="2025년 여름방학 초등부/중등부 영어 특강 안내. 파닉스, 라이팅, 문법, 구문해석 완성반으로 실력 향상의 기회를 놓치지 마세요!"
-    />
-    <meta
-      name="keywords"
-      content="영어학원, 여름특강, 초등영어, 중등영어, 파닉스, 라이팅, 문법, 헤이영어, 거여동"
-    />
+    <title>여름방학 특강 안내</title>
     <style>
       * {
         margin: 0;
@@ -262,56 +232,6 @@
         background: linear-gradient(135deg, #a29bfe, #6c5ce7);
       }
 
-      .calendar-container {
-        position: relative;
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .calendar-navigation {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .nav-button {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        font-size: 1.2em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-      }
-
-      .nav-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-      }
-
-      .nav-button:disabled {
-        background: #bdc3c7;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-      }
-
-      .calendar-month {
-        display: none;
-      }
-
-      .calendar-month.active {
-        display: block;
-      }
-
       .price-info {
         background: linear-gradient(135deg, #00b894, #00a085);
         color: white;
@@ -354,142 +274,24 @@
       }
 
       @media (max-width: 768px) {
-        body {
-          padding: 10px;
-        }
-
-        .header {
-          padding: 20px 15px;
-        }
-
-        .header h1 {
-          font-size: 1.8em;
-        }
-
-        .header p {
-          font-size: 1em;
-        }
-
-        .content {
-          padding: 20px;
-        }
-
-        .section-title {
-          font-size: 1.5em;
-          margin-bottom: 20px;
-        }
-
-        .class-info {
-          padding: 20px 15px;
-          margin-bottom: 20px;
-        }
-
-        .class-schedule {
-          grid-template-columns: 1fr;
-          gap: 15px;
-        }
-
-        .time-slot {
-          padding: 15px;
-        }
-
-        .time-slot h4 {
-          font-size: 1em;
-          margin-bottom: 8px;
-        }
-
-        .time-slot p {
-          font-size: 0.85em;
-          line-height: 1.4;
-        }
-
-        .calendar {
-          padding: 15px;
-          margin-bottom: 20px;
-        }
-
-        .calendar-header {
-          font-size: 1.2em;
-          margin-bottom: 15px;
-        }
-
-        .calendar h4 {
-          font-size: 1em !important;
-          margin-bottom: 10px !important;
-        }
-
         .calendar-grid {
-          gap: 3px;
-        }
-
-        .day-header {
-          padding: 8px 4px;
-          font-size: 0.8em;
-          border-radius: 4px;
+          gap: 5px;
         }
 
         .day {
-          min-height: 50px;
-          padding: 8px 4px;
-          font-size: 0.8em;
-          border-radius: 6px;
-          line-height: 1.2;
+          min-height: 45px;
+          padding: 8px 5px;
+          font-size: 0.9em;
         }
 
-        .day br {
-          line-height: 0.5;
+        .day.class-day::after,
+        .day.vacation::after {
+          font-size: 0.6em;
         }
 
         .legend {
           flex-direction: column;
           align-items: center;
-          gap: 10px;
-          margin-top: 15px;
-        }
-
-        .legend-item {
-          padding: 6px 10px;
-          font-size: 0.9em;
-        }
-
-        .legend-color {
-          width: 12px;
-          height: 12px;
-        }
-
-        .price-info {
-          padding: 20px 15px;
-          margin-top: 20px;
-        }
-
-        .price-info h3 {
-          font-size: 1.4em;
-          margin-bottom: 12px;
-        }
-
-        .price-info p {
-          font-size: 1em;
-          margin-bottom: 8px;
-        }
-
-        .contact-info {
-          padding: 20px 15px;
-          margin-top: 20px;
-        }
-
-        .contact-info h3 {
-          font-size: 1.3em;
-          margin-bottom: 12px;
-        }
-
-        .contact-info p {
-          font-size: 1em;
-          margin-bottom: 5px;
-        }
-
-        .highlight {
-          padding: 1px 6px;
-          font-size: 0.95em;
         }
       }
     </style>
@@ -519,41 +321,28 @@
                 <p>✍️ 문장 쓰기부터 단락까지 (3-4학년 추천)</p>
               </div>
               <div class="time-slot">
-                <h4>🅾️ 기초 스피킹 특강</h4>
+                <h4>🅾️ 개인별 맞춤 단어 특강</h4>
                 <p>⏰ 11:00-11:50 (50분)</p>
-                <p>🎯 재미있게 영어로 대화하고 표현하는 시간!(1~2학년 추천)</p>
+                <p>🎯 개인 교재로 맞춤 관리!</p>
               </div>
             </div>
           </div>
 
-          <div class="calendar-container">
+          <div class="calendar">
             <div class="calendar-header">초등부 일정표</div>
 
-            <div class="calendar-navigation">
-              <button
-                class="nav-button"
-                onclick="prevMonth('elementary')"
-                id="elementary-prev"
-              >
-                ‹
-              </button>
+            <!-- 7월 달력 -->
+            <div style="margin-bottom: 30px">
               <h4
-                id="elementary-month-title"
-                style="color: #2c3e50; font-size: 1.2em; margin: 0"
+                style="
+                  text-align: center;
+                  color: #2c3e50;
+                  margin-bottom: 15px;
+                  font-size: 1.2em;
+                "
               >
                 📅 7월
               </h4>
-              <button
-                class="nav-button"
-                onclick="nextMonth('elementary')"
-                id="elementary-next"
-              >
-                ›
-              </button>
-            </div>
-
-            <!-- 7월 달력 -->
-            <div class="calendar-month active" id="elementary-july">
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -606,7 +395,17 @@
             </div>
 
             <!-- 8월 달력 -->
-            <div class="calendar-month" id="elementary-august">
+            <div>
+              <h4
+                style="
+                  text-align: center;
+                  color: #2c3e50;
+                  margin-bottom: 15px;
+                  font-size: 1.2em;
+                "
+              >
+                📅 8월
+              </h4>
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -702,34 +501,21 @@
             </div>
           </div>
 
-          <div class="calendar-container">
+          <div class="calendar">
             <div class="calendar-header">중등부 일정표</div>
 
-            <div class="calendar-navigation">
-              <button
-                class="nav-button"
-                onclick="prevMonth('middle')"
-                id="middle-prev"
-              >
-                ‹
-              </button>
+            <!-- 7월 달력 -->
+            <div style="margin-bottom: 30px">
               <h4
-                id="middle-month-title"
-                style="color: #2c3e50; font-size: 1.2em; margin: 0"
+                style="
+                  text-align: center;
+                  color: #2c3e50;
+                  margin-bottom: 15px;
+                  font-size: 1.2em;
+                "
               >
                 📅 7월
               </h4>
-              <button
-                class="nav-button"
-                onclick="nextMonth('middle')"
-                id="middle-next"
-              >
-                ›
-              </button>
-            </div>
-
-            <!-- 7월 달력 -->
-            <div class="calendar-month active" id="middle-july">
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -782,7 +568,17 @@
             </div>
 
             <!-- 8월 달력 -->
-            <div class="calendar-month" id="middle-august">
+            <div>
+              <h4
+                style="
+                  text-align: center;
+                  color: #2c3e50;
+                  margin-bottom: 15px;
+                  font-size: 1.2em;
+                "
+              >
+                📅 8월
+              </h4>
               <div class="calendar-grid">
                 <div class="day-header">일</div>
                 <div class="day-header">월</div>
@@ -878,34 +674,34 @@
         <!-- 연락처 -->
         <div class="contact-info">
           <h3>📞 문의 및 신청</h3>
-          <p>🏫 헤이영어</p>
+          <p>🏫 헤이영어교습소</p>
           <p>
             📍
             <a
-              href="https://map.naver.com/v5/search/%EA%B1%B0%EC%97%AC%EC%84%B8%EC%8B%A0%EC%A2%85%ED%95%A9%EC%83%81%EA%B0%80"
+              href="https://map.naver.com/p/search/%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4%EA%B5%90%EC%8A%B5%EC%86%8C/place/1478910981?placePath=/home?entry=pll&from=nx&fromNxList=true&fromPanelNum=2&timestamp=202506182030&locale=ko&svcName=map_pcv5&searchText=%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4%EA%B5%90%EC%8A%B5%EC%86%8C&searchType=place&c=15.00,0,0,0,dh"
               target="_blank"
-              style="
-                color: #74b9ff;
-                text-decoration: none;
-                font-weight: bold;
-                border-bottom: 2px solid #74b9ff;
-                transition: all 0.3s ease;
-              "
+              style="color: white; text-decoration: underline"
               >거여세신종합상가 610호</a
+            >
+            📍<span style="font-size: 0.9em; opacity: 0.8"
+              >(지도 보기 - 클릭하세요)</span
             >
           </p>
           <p>
             📱 전화 :
             <a
-              href="tel:010-2490-0532"
-              style="
-                color: #ffeaa7;
-                text-decoration: none;
-                font-weight: bold;
-                border-bottom: 2px solid #ffeaa7;
-                transition: all 0.3s ease;
-              "
+              href="tel:01024900532"
+              style="color: white; text-decoration: underline"
               >010.2490.0532</a
+            >
+            (<a
+              href="sms:01024900532"
+              style="color: white; text-decoration: underline"
+              >문자하기</a
+            >)
+            <br />
+            <span style="font-size: 0.9em; opacity: 0.8"
+              >(전화/문자 - 클릭하세요)</span
             >
           </p>
           <p style="margin-top: 15px; font-weight: bold">
@@ -914,67 +710,5 @@
         </div>
       </div>
     </div>
-
-    <script>
-      // 달력 상태 관리
-      const calendarState = {
-        elementary: {
-          currentMonth: 0, // 0: 7월, 1: 8월
-          months: ["📅 7월", "📅 8월"],
-          monthIds: ["elementary-july", "elementary-august"],
-        },
-        middle: {
-          currentMonth: 0, // 0: 7월, 1: 8월
-          months: ["📅 7월", "📅 8월"],
-          monthIds: ["middle-july", "middle-august"],
-        },
-      };
-
-      function updateCalendar(type) {
-        const state = calendarState[type];
-        const title = document.getElementById(`${type}-month-title`);
-        const prevBtn = document.getElementById(`${type}-prev`);
-        const nextBtn = document.getElementById(`${type}-next`);
-
-        // 제목 업데이트
-        title.textContent = state.months[state.currentMonth];
-
-        // 버튼 상태 업데이트
-        prevBtn.disabled = state.currentMonth === 0;
-        nextBtn.disabled = state.currentMonth === state.months.length - 1;
-
-        // 달력 표시 업데이트
-        state.monthIds.forEach((id, index) => {
-          const monthElement = document.getElementById(id);
-          if (index === state.currentMonth) {
-            monthElement.classList.add("active");
-          } else {
-            monthElement.classList.remove("active");
-          }
-        });
-      }
-
-      function prevMonth(type) {
-        const state = calendarState[type];
-        if (state.currentMonth > 0) {
-          state.currentMonth--;
-          updateCalendar(type);
-        }
-      }
-
-      function nextMonth(type) {
-        const state = calendarState[type];
-        if (state.currentMonth < state.months.length - 1) {
-          state.currentMonth++;
-          updateCalendar(type);
-        }
-      }
-
-      // 초기 상태 설정
-      document.addEventListener("DOMContentLoaded", function () {
-        updateCalendar("elementary");
-        updateCalendar("middle");
-      });
-    </script>
   </body>
 </html>
