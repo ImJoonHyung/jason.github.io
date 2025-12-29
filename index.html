@@ -1,1645 +1,547 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HEY English - 개별 맞춤 영어교육의 새로운 기준</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeyEnglish - Master the Language</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="hey-logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Plus Jakarta Sans", "Inter", -apple-system,
-          BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        line-height: 1.7;
-        color: #0a0a0a;
-        background: #000;
-        overflow-x: hidden;
-        font-optical-sizing: auto;
-      }
-
-      /* Scroll Stack Container */
-      .scroll-stack {
-        position: relative;
-      }
-
-      .stack-section {
-        position: sticky;
-        top: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        will-change: transform;
-        transform-origin: center bottom;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* Hero Section */
-      .hero {
-        background: radial-gradient(ellipse at top, #1a1a1a 0%, #000 70%),
-          linear-gradient(
-            135deg,
-            #4f46e5 0%,
-            #7c3aed 25%,
-            #ec4899 50%,
-            #f59e0b 75%,
-            #10b981 100%
-          );
-        position: relative;
-        text-align: center;
-        color: white;
-        overflow: hidden;
-        z-index: 5;
-        border-radius: 0 0 32px 32px;
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 20% 50%,
-            rgba(79, 70, 229, 0.15) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 80% 20%,
-            rgba(236, 72, 153, 0.15) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 40% 80%,
-            rgba(16, 185, 129, 0.15) 0%,
-            transparent 50%
-          ),
-          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>')
-            repeat;
-        animation: floatBackground 20s ease-in-out infinite;
-      }
-
-      @keyframes floatBackground {
-        0%,
-        100% {
-          transform: translate(0, 0) scale(1);
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
-        50% {
-          transform: translate(-10px, -10px) scale(1.02);
+        /* Custom Grid Background */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
         }
-      }
-
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 800px;
-        padding: 0 20px;
-      }
-
-      .logo-modern {
-        font-size: 5rem;
-        font-weight: 900;
-        margin-bottom: 2rem;
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #fafafa 25%,
-          #ffffff 50%,
-          #e5e5e5 75%,
-          #ffffff 100%
-        );
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 3s ease-in-out infinite;
-        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.3));
-        letter-spacing: -0.02em;
-        text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-      }
-
-      @keyframes shimmer {
-        0%,
-        100% {
-          background-position: 0% 50%;
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        50% {
-          background-position: 100% 50%;
+        .image-fade {
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
-      }
-
-      @keyframes gradientShift {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      .hero h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        line-height: 1.1;
-        letter-spacing: -0.025em;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .hero p {
-        font-size: 1.3rem;
-        opacity: 0.85;
-        margin-bottom: 3rem;
-        font-weight: 400;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-      }
-
-      .cta-hero {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 18px 36px;
-        border-radius: 60px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
-
-      .cta-hero::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .cta-hero:hover::before {
-        left: 100%;
-      }
-
-      .cta-hero:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
-          0 8px 32px rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-
-      /* Floating Animation */
-      .floating {
-        animation: floating 6s ease-in-out infinite;
-      }
-
-      @keyframes floating {
-        0%,
-        100% {
-          transform: translate(0, 0px);
-        }
-        50% {
-          transform: translate(0, -20px);
-        }
-      }
-
-      /* Features Section */
-      .features {
-        background: radial-gradient(ellipse at center, #111 0%, #000 70%);
-        color: white;
-        padding: 160px 0;
-        position: relative;
-        overflow: hidden;
-        z-index: 4;
-        border-radius: 32px 32px 32px 32px;
-        margin-top: -32px;
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
-      }
-
-      .features::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 25% 25%,
-            rgba(79, 70, 229, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 75% 75%,
-            rgba(236, 72, 153, 0.1) 0%,
-            transparent 50%
-          );
-        pointer-events: none;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .section-title {
-        text-align: center;
-        font-size: 3.2rem;
-        font-weight: 800;
-        margin-bottom: 1.5rem;
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #e5e5e5 50%,
-          #ffffff 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: -0.03em;
-        position: relative;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background: linear-gradient(90deg, #4f46e5, #ec4899, #10b981);
-        border-radius: 2px;
-      }
-
-      .section-subtitle {
-        text-align: center;
-        font-size: 1.2rem;
-        opacity: 0.75;
-        margin-bottom: 6rem;
-        font-weight: 400;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.7;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-      }
-
-      .feature-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 3.5rem 2.5rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      }
-
-      .feature-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          #4f46e5,
-          #7c3aed,
-          #ec4899,
-          #f59e0b,
-          #10b981
-        );
-        background-size: 300% 100%;
-        animation: gradientMove 4s ease-in-out infinite;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .feature-card:hover::before {
-        opacity: 1;
-      }
-
-      @keyframes gradientMove {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      .feature-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 60px rgba(79, 70, 229, 0.2),
-          0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255, 255, 255, 0.15);
-      }
-
-      .feature-icon {
-        font-size: 4.5rem;
-        margin-bottom: 2.5rem;
-        filter: drop-shadow(0 0 30px rgba(79, 70, 229, 0.4));
-        transition: all 0.3s ease;
-      }
-
-      .feature-card:hover .feature-icon {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 40px rgba(79, 70, 229, 0.6));
-      }
-
-      .feature-card h3 {
-        font-size: 1.6rem;
-        margin-bottom: 1.5rem;
-        color: #fff;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-
-      .feature-card p {
-        color: rgba(255, 255, 255, 0.75);
-        line-height: 1.7;
-        font-size: 0.95rem;
-      }
-
-      /* Schedule Section */
-      .schedule {
-        background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 70%);
-        padding: 160px 0;
-        color: white;
-        position: relative;
-        overflow: hidden;
-        z-index: 3;
-        border-radius: 32px 32px 32px 32px;
-        margin-top: -32px;
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-      }
-
-      .schedule::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 80% 20%,
-            rgba(124, 58, 237, 0.1) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            circle at 20% 80%,
-            rgba(245, 158, 11, 0.1) 0%,
-            transparent 60%
-          );
-        pointer-events: none;
-      }
-
-      .schedule-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-        margin-top: 4rem;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .schedule-card {
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border-radius: 28px;
-        padding: 3.5rem 2.5rem;
-        text-align: center;
-        position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      }
-
-      .schedule-card::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-          from 0deg,
-          transparent 0deg,
-          rgba(79, 70, 229, 0.2) 90deg,
-          transparent 180deg,
-          rgba(236, 72, 153, 0.2) 270deg,
-          transparent 360deg
-        );
-        animation: rotate 6s linear infinite;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-
-      .schedule-card:hover::before {
-        opacity: 1;
-      }
-
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .schedule-card-content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .schedule-card:hover {
-        transform: translateY(-5px) scale(1.03);
-        box-shadow: 0 25px 70px rgba(79, 70, 229, 0.25),
-          0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.12);
-      }
-
-      .schedule-level {
-        display: inline-block;
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: #ffffff;
-        padding: 0.6rem 1.8rem;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        margin-bottom: 2rem;
-        text-transform: uppercase;
-        letter-spacing: 1.2px;
-        box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
-        transition: all 0.3s ease;
-      }
-
-      .schedule-card:hover .schedule-level {
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
-      }
-
-      .schedule-time {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        color: #ccc;
-      }
-
-      .schedule-price {
-        font-size: 3.2rem;
-        font-weight: 900;
-        margin-bottom: 2rem;
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #e5e5e5 50%,
-          #ffffff 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: -0.02em;
-        position: relative;
-      }
-
-      .schedule-price::after {
-        content: "";
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 2px;
-        background: linear-gradient(90deg, #4f46e5, #ec4899);
-        border-radius: 1px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .schedule-card:hover .schedule-price::after {
-        opacity: 1;
-      }
-
-      .schedule-features {
-        list-style: none;
-        margin-bottom: 2rem;
-      }
-
-      .schedule-features li {
-        padding: 0.5rem 0;
-        color: #ddd;
-        position: relative;
-        padding-left: 1.5rem;
-      }
-
-      .schedule-features li::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: #4ecdc4;
-        font-weight: bold;
-      }
-
-      /* CTA Section */
-      .cta {
-        background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 50%),
-          linear-gradient(
-            135deg,
-            #4f46e5 0%,
-            #7c3aed 25%,
-            #ec4899 50%,
-            #f59e0b 75%,
-            #10b981 100%
-          );
-        padding: 120px 0;
-        text-align: center;
-        color: white;
-        position: relative;
-        overflow: hidden;
-        z-index: 2;
-        border-radius: 32px 32px 32px 32px;
-        margin-top: -32px;
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
-      }
-
-      .cta::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 30% 20%,
-            rgba(79, 70, 229, 0.1) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 70% 80%,
-            rgba(236, 72, 153, 0.1) 0%,
-            transparent 50%
-          ),
-          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.08)" opacity="0.5"/></svg>')
-            repeat;
-        background-size: 60px 60px;
-        animation: moveBackground 25s linear infinite;
-      }
-
-      @keyframes moveBackground {
-        0% {
-          transform: translate(0, 0);
-        }
-        100% {
-          transform: translate(50px, 50px);
-        }
-      }
-
-      .cta-content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .cta h2 {
-        font-size: 3.3rem;
-        font-weight: 800;
-        margin-bottom: 2rem;
-        letter-spacing: -0.02em;
-        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .cta p {
-        font-size: 1.2rem;
-        margin-bottom: 3.5rem;
-        opacity: 0.85;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-      }
-
-      .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-bottom: 4rem;
-      }
-
-      .cta-components {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
-        max-width: 1000px;
-        margin: 0 auto;
-        align-items: stretch;
-      }
-
-      .cta-component {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border-radius: 24px;
-        padding: 3rem 2.5rem;
-        text-align: center;
-        position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.08);
-        display: flex;
-        flex-direction: column;
-        min-height: 280px;
-      }
-
-      .cta-component::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: conic-gradient(
-          from 0deg,
-          transparent 0deg,
-          rgba(79, 70, 229, 0.2) 90deg,
-          transparent 180deg,
-          rgba(236, 72, 153, 0.2) 270deg,
-          transparent 360deg
-        );
-        animation: rotate 8s linear infinite;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-
-      .cta-component:hover::before {
-        opacity: 1;
-      }
-
-      .cta-component:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 25px 70px rgba(79, 70, 229, 0.3),
-          0 12px 40px rgba(0, 0, 0, 0.4),
-          inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.15);
-      }
-
-      .cta-component-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex: 1;
-      }
-
-      .cta-component h3 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        color: #fff;
-        letter-spacing: -0.02em;
-      }
-
-      .cta-component p {
-        color: rgba(255, 255, 255, 0.8);
-        margin-bottom: 2.5rem;
-        line-height: 1.6;
-        font-size: 1rem;
-      }
-
-      .cta-component-button {
-        display: inline-block;
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-        margin-bottom: 1.5rem;
-      }
-
-      .cta-component-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      }
-
-      .cta-button {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        color: white;
-        padding: 1.1rem 2.2rem;
-        border-radius: 60px;
-        text-decoration: none;
-        font-weight: 600;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        font-size: 1rem;
-      }
-
-      .cta-button.primary {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        color: #4f46e5;
-        box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      }
-
-      .cta-button:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2),
-          0 8px 32px rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.15);
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-
-      .cta-button.primary:hover {
-        background: rgba(255, 255, 255, 1);
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 15px 50px rgba(79, 70, 229, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      }
-
-      /* Footer Info */
-      .footer-info {
-        background: radial-gradient(ellipse at center, #0a0a0a 0%, #000 100%);
-        color: white;
-        padding: 100px 0;
-        position: relative;
-        z-index: 1;
-        border-radius: 32px 32px 0 0;
-        margin-top: -32px;
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
-      }
-
-      .footer-info::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 30% 30%,
-            rgba(79, 70, 229, 0.05) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            circle at 70% 70%,
-            rgba(16, 185, 129, 0.05) 0%,
-            transparent 60%
-          );
-        pointer-events: none;
-      }
-
-      .info-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 3rem;
-        text-align: center;
-      }
-
-      .map-container {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        overflow: hidden;
-        margin: 4rem 0;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .map-container:hover {
-        transform: translateY(-6px) scale(1.02);
-        border-color: rgba(79, 70, 229, 0.3);
-        background: rgba(255, 255, 255, 0.05);
-        box-shadow: 0 15px 50px rgba(79, 70, 229, 0.15),
-          0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
-
-      .map-container h3 {
-        color: #fff;
-        font-size: 1.6rem;
-        font-weight: 600;
-        padding: 2rem;
-        margin: 0;
-        text-align: center;
-        letter-spacing: -0.01em;
-      }
-
-      .map-embed {
-        width: 100%;
-        height: 300px;
-        border: none;
-        filter: hue-rotate(210deg) saturate(0.8) brightness(0.7);
-        transition: filter 0.3s ease;
-      }
-
-      .map-container:hover .map-embed {
-        filter: hue-rotate(210deg) saturate(1) brightness(0.9);
-      }
-
-      .info-item {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 3.5rem 2.5rem;
-        border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        position: relative;
-      }
-
-      .info-item:hover {
-        transform: translateY(-6px) scale(1.02);
-        border-color: rgba(79, 70, 229, 0.3);
-        background: rgba(255, 255, 255, 0.05);
-        box-shadow: 0 15px 50px rgba(79, 70, 229, 0.15),
-          0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
-
-      .info-icon {
-        font-size: 3.5rem;
-        margin-bottom: 2rem;
-        color: #4f46e5;
-        filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.4));
-        transition: all 0.3s ease;
-      }
-
-      .info-item:hover .info-icon {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 30px rgba(79, 70, 229, 0.6));
-      }
-
-      .info-item h3 {
-        font-size: 1.6rem;
-        margin-bottom: 1.5rem;
-        color: #fff;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-
-      .info-item p {
-        color: rgba(255, 255, 255, 0.75);
-        line-height: 1.7;
-        font-size: 0.95rem;
-      }
-
-      /* Scroll Progress */
-      .scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          #4f46e5,
-          #7c3aed,
-          #ec4899,
-          #f59e0b,
-          #10b981
-        );
-        z-index: 9999;
-        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
-      }
-
-      /* Enhanced Mobile Responsiveness */
-      @media (max-width: 768px) {
-        .hero h1 {
-          font-size: 2.5rem;
-          line-height: 1.2;
-        }
-
-        .hero p {
-          font-size: 1.1rem;
-          padding: 0 1rem;
-        }
-
-        .logo-modern {
-          font-size: 3rem;
-        }
-
-        .section-title {
-          font-size: 2.5rem;
-        }
-
-        .section-subtitle {
-          font-size: 1.1rem;
-          padding: 0 1rem;
-        }
-
-        .features,
-        .schedule {
-          padding: 100px 0;
-        }
-
-        .feature-card,
-        .schedule-card,
-        .info-item {
-          padding: 2.5rem 1.5rem;
-        }
-
-        .schedule-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.5rem;
-          max-width: 600px;
-        }
-
-        .schedule-price {
-          font-size: 2.5rem;
-        }
-
-        .cta-buttons {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .cta-components {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .cta-button {
-          width: 100%;
-          max-width: 320px;
-          margin: 0.5rem 0;
-        }
-
-        .cta h2 {
-          font-size: 2.5rem;
-        }
-
-        .container {
-          padding: 0 1rem;
-        }
-      }
-
-      @media (max-width: 600px) {
-        .features-grid,
-        .schedule-grid {
-          grid-template-columns: 1fr;
-          max-width: 400px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .logo-modern {
-          font-size: 2.5rem;
-        }
-
-        .section-title {
-          font-size: 2rem;
-        }
-
-        .feature-card,
-        .schedule-card,
-        .info-item {
-          padding: 2rem 1rem;
-        }
-      }
-
-      /* Enhanced Scroll and Effects */
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Selection */
-      ::selection {
-        background: rgba(79, 70, 229, 0.3);
-        color: white;
-      }
-
-      /* Scrollbar Styling */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #000;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #7c3aed, #ec4899);
-      }
-
-      /* Cursor Effects */
-      .cta-hero,
-      .cta-button,
-      .feature-card,
-      .schedule-card,
-      .info-item {
-        cursor: pointer;
-      }
-
-      /* Focus States */
-      .cta-hero:focus,
-      .cta-button:focus {
-        outline: 2px solid rgba(79, 70, 229, 0.5);
-        outline-offset: 2px;
-      }
-
-      /* Loading Animation */
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.7;
-        }
-      }
-
-      .loading {
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      /* Parallax Effect Helper */
-      .parallax-element {
-        will-change: transform;
-      }
-
-      /* Stack Section Animations */
-      .stack-section {
-        opacity: 0.8;
-        transform: scale(0.8) translateY(100px);
-        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .stack-section.stack-visible {
-        opacity: 1;
-      }
-
-      /* Enhanced Stack Effects */
-      .scroll-stack .stack-section:not(:first-child) {
-        margin-top: -32px;
-      }
-
-      /* Stack Section Hover Effects */
-      .stack-section:hover {
-        transform: scale(1.01) translateY(-10px) !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* Smooth transitions for mobile */
-      @media (max-width: 768px) {
-        .stack-section {
-          transition: transform 0.3s ease-out;
-        }
-
-        .scroll-stack .stack-section:not(:first-child) {
-          margin-top: -20px;
-        }
-      }
     </style>
-  </head>
-  <body>
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scrollProgress"></div>
+</head>
+<body class="bg-slate-50 text-slate-900 selection:bg-blue-100 selection:text-blue-900">
 
-    <div class="scroll-stack">
-      <!-- Hero Section -->
-      <section class="hero stack-section" data-section="hero">
-        <div class="hero-content floating">
-          <div class="logo-modern">HEY</div>
-          <h1>학생 한 명 한 명이 주인공인<br />영어교육</h1>
-          <p>한양대 영어교육과 출신 원장의 전문 교육 시스템</p>
-          <a href="#schedule" class="cta-hero">수업 안내 보기</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="hey-logo.png" alt="HeyEnglish Logo" class="w-8 h-8 object-contain">
+                <span class="text-xl font-semibold tracking-tight text-slate-900">HeyEnglish</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#curriculum" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">커리큘럼</a>
+                <a href="#phone-consultation" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">문의</a>
+                <a href="#pricing" class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors">수강료</a>
+            </div>
         </div>
-      </section>
+    </nav>
 
-      <!-- Features Section -->
-      <section
-        class="features stack-section"
-        id="features"
-        data-section="features"
-      >
-        <div class="container">
-          <h2 class="section-title">왜 HEY English인가?</h2>
-          <p class="section-subtitle">
-            한양대학교 영어교육과 출신 원장의 체계적 교육 이론과 실무 경험이
-            만든 차별화된 개별 맞춤 교육
-          </p>
-
-          <div class="features-grid">
-            <div class="feature-card">
-              <div class="feature-icon">🎯</div>
-              <h3>개별 맞춤 커리큘럼</h3>
-              <p>
-                학생의 수준과 목표에 맞춘 완전 개별화된 학습 프로그램으로 최적의
-                성장을 지원합니다.
-              </p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-icon">📚</div>
-              <h3>5-Skills 통합교육</h3>
-              <p>
-                Reading, Listening, Writing, Speaking, Grammar를 유기적으로
-                연결한 체계적 영어 교육을 제공합니다.
-              </p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-icon">👨‍🏫</div>
-              <h3>전문적 개별 관리</h3>
-              <p>
-                각 학생의 학습 진도와 약점을 세밀하게 분석하여 맞춤형 피드백을
-                제공합니다.
-              </p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-icon">👥</div>
-              <h3>소수정예 최대 6명</h3>
-              <p>
-                소규모 그룹으로 운영되어 개별 학생에게 더 많은 관심과 지도가
-                가능합니다.
-              </p>
-            </div>
-          </div>
+    <!-- Hero Section -->
+    <main class="relative w-full h-screen min-h-[700px] flex items-center overflow-hidden">
+        
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&amp;w=2574&amp;auto=format&amp;fit=crop" alt="Background" class="w-full h-full object-cover select-none">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
         </div>
-      </section>
 
-      <!-- Schedule Section -->
-      <section
-        class="schedule stack-section"
-        id="schedule"
-        data-section="schedule"
-      >
-        <div class="container">
-          <h2 class="section-title">정규반 안내</h2>
-          <p class="section-subtitle">
-            월/수 운영, 개별 맞춤 교재로 진행하는 5-Skills 통합 교육
-          </p>
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+            <div class="max-w-3xl">
+                
+                <div class="flex items-center gap-3 mb-6 animate-fade-in-up">
+                    <div class="w-8 h-[1px] bg-blue-400/80"></div>
+                    <span class="text-xs font-medium tracking-[0.2em] text-blue-100 uppercase">
+                        your global passport
+                    </span>
+                </div>
 
-          <div class="schedule-grid">
-            <div class="schedule-card">
-              <div class="schedule-card-content">
-                <div class="schedule-level">초등 A반</div>
-                <div class="schedule-time">월/수 14:10 - 15:50</div>
-                <div class="schedule-price">21만원</div>
-                <ul class="schedule-features">
-                  <li>개별 맞춤 교재</li>
-                  <li>5-Skills 통합 수업</li>
-                  <li>개인별 진도 관리</li>
-                </ul>
-              </div>
-            </div>
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white mb-2 leading-[1.1]">
+                    Speak fluent,
+                </h1>
+                
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight text-white/40 mb-8 leading-[1.1]">
+                    not broken.
+                </h1>
 
-            <div class="schedule-card">
-              <div class="schedule-card-content">
-                <div class="schedule-level">초등 B반</div>
-                <div class="schedule-time">월/수 15:00 - 16:50</div>
-                <div class="schedule-price">23만원</div>
-                <ul class="schedule-features">
-                  <li>개별 맞춤 교재</li>
-                  <li>5-Skills 통합 수업</li>
-                  <li>개인별 진도 관리</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="schedule-card">
-              <div class="schedule-card-content">
-                <div class="schedule-level">중등부</div>
-                <div class="schedule-time">월/수 17:00 - 19:30</div>
-                <div class="schedule-price">27만원</div>
-                <ul class="schedule-features">
-                  <li>개별 맞춤 교재</li>
-                  <li>내신/수능 대비</li>
-                  <li>고급 과정</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="schedule-card">
-              <div class="schedule-card-content">
-                <div class="schedule-level">고등부</div>
-                <div class="schedule-time">월/수 19:30 - 22:00</div>
-                <div class="schedule-price">33만원</div>
-                <ul class="schedule-features">
-                  <li>내신/수능 대비</li>
-                  <li>개별 심화 관리</li>
-                  <li>입시 완벽 준비</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- CTA Section -->
-    <section class="cta stack-section" id="contact" data-section="cta">
-      <div class="container">
-        <div class="cta-content">
-          <h2>지금 바로 시작하세요</h2>
-          <p>내 아이에게 맞는 최적의 영어교육을 경험해보세요</p>
-
-          <div class="cta-components">
-            <!-- 전화 상담 컴포넌트 -->
-            <div class="cta-component">
-              <div class="cta-component-content">
-                <h3>📞 전화 상담</h3>
-                <p>
-                  언제든지 편하게 전화주세요<br />상담 및 방문 상담 가능합니다
+                <p class="text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed mb-10 font-light">
+                    AI 기반의 몰입형 학습 플랫폼으로 문법 교정부터 발음까지,<br>완벽한 영어를 경험하세요.
                 </p>
-                <a href="tel:010-2490-0532" class="cta-component-button"
-                  >010.2490.0532</a
-                >
-                <p
-                  style="
-                    font-size: 0.9rem;
-                    color: rgba(255, 255, 255, 0.6);
-                    margin: 0;
-                  "
-                >
-                  평일 10:00 - 22:00<br />토요일 10:00 - 18:00
-                </p>
-              </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#pricing" class="group flex items-center gap-3 bg-white text-slate-900 px-6 py-3.5 rounded-xl hover:bg-slate-100 transition-all duration-200 shadow-xl shadow-black/10">
+                        <i data-lucide="play-circle" class="w-6 h-6 text-slate-900 fill-current opacity-20 group-hover:opacity-100 transition-opacity" stroke-width="1.5"></i>
+                        <div class="text-left flex flex-col">
+                            <span class="text-[10px] uppercase tracking-wide font-semibold text-slate-500">Class Info</span>
+                            <span class="text-base font-semibold tracking-tight -mt-0.5">수업 안내</span>
+                        </div>
+                    </a>
+
+                    <a href="#phone-consultation" class="group flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3.5 rounded-xl hover:bg-white/20 transition-all duration-200">
+                        <i data-lucide="calendar" class="w-6 h-6 text-white opacity-80" stroke-width="1.5"></i>
+                        <div class="text-left flex flex-col">
+                            <span class="text-[10px] uppercase tracking-wide font-medium text-slate-300">Consultation</span>
+                            <span class="text-base font-medium tracking-tight -mt-0.5">상담 예약</span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Process Section with Sticky Image Changing -->
+    <section id="curriculum" class="relative py-24 md:py-32 bg-white overflow-hidden border-t border-slate-100">
+        <!-- Grid Background -->
+        <div class="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="max-w-2xl mb-24">
+                <h2 class="text-5xl md:text-6xl font-semibold tracking-tight text-slate-900 mb-6">
+                    3단계로 완성하는<br><span class="text-slate-300">영어 마스터.</span>
             </div>
 
-            <!-- 위치 안내 컴포넌트 -->
-            <div class="cta-component">
-              <div class="cta-component-content">
-                <h3>📍 위치 안내</h3>
-                <p>
-                  서울 송파구 거여동 290-1<br />거여세신종합상가 610호<br />등록번호:
-                  348-97-01842
-                </p>
-                <a
-                  href="#"
-                  class="cta-component-button"
-                  onclick="openNaverMap()"
-                  >네이버 지도 보기</a
-                >
-              </div>
+            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                
+                <!-- Left Column: Sticky Image Container -->
+                <div class="hidden lg:block lg:w-1/2 relative">
+                    <div class="sticky top-32 h-[600px] w-full transition-all duration-300">
+                        <!-- Card Container -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-200 h-full w-full bg-slate-50 group">
+                            
+                            <!-- Dynamic Images -->
+                            <!-- Image 1 (Static) -->
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&amp;w=2670&amp;auto=format&amp;fit=crop" alt="Process" class="absolute inset-0 w-full h-full object-cover">
+                            
+                            <!-- Overlay Gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
+
+                            
+
+                            <!-- Floating Card (Bottom) -->
+                            <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md border border-slate-200 p-5 rounded-xl shadow-xl shadow-black/5 z-20 transition-all duration-300">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center gap-2 text-slate-500">
+                                        <i data-lucide="target" class="w-4 h-4" stroke-width="1.5"></i>
+                                        <span class="text-[10px] uppercase font-bold tracking-wider">현재 목표</span>
+                                    </div>
+                                    <span id="step-indicator" class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded transition-all">Step 1 of 4</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div id="step-title" class="text-lg font-bold text-slate-900 tracking-tight transition-all">레벨 테스트</div>
+                                    </div>
+                                    <div class="h-10 w-10 bg-slate-900 rounded-full flex items-center justify-center text-white">
+                                        <i data-lucide="arrow-right" class="w-5 h-5" stroke-width="1.5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Decorative background blob -->
+                        <div class="absolute -inset-4 bg-gradient-to-tr from-blue-100 to-slate-100 rounded-[2rem] -z-10 blur-2xl opacity-50"></div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Stacking Cards -->
+                <div class="lg:w-1/2 flex flex-col py-0">
+                    <div class="relative w-full space-y-8">
+                        
+                        <!-- Step 1 Card -->
+                        <div id="step-1" class="sticky top-32 bg-white border border-slate-200 rounded-3xl p-8 shadow-xl shadow-slate-200/50 transition-all duration-300" style="z-index: 1;">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div id="step-num-1" class="flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 text-white font-bold text-lg shadow-lg shadow-slate-900/20">
+                                    1
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 tracking-tight">개별 맞춤 커리큘럼</h3>
+                            </div>
+                            <p class="text-lg text-slate-500 leading-relaxed font-light">
+                                학생의 수준과 목표에 맞춘 완전 개별화된 학습 프로그램으로 최적의 성장을 지원합니다.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 Card -->
+                        <div id="step-2" class="sticky top-40 bg-white border border-slate-200 rounded-3xl p-8 shadow-xl shadow-slate-200/50 transition-all duration-300" style="z-index: 2;">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div id="step-num-2" class="flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-200 text-slate-400 font-bold text-lg">
+                                    2
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 tracking-tight">5-Skills 통합교육</h3>
+                            </div>
+                            <p class="text-lg text-slate-500 leading-relaxed font-light">
+                                Reading, Listening, Writing, Speaking, Grammar를 유기적으로 연결한 체계적 영어 교육을 제공합니다.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 Card -->
+                        <div id="step-3" class="sticky top-48 bg-white border border-slate-200 rounded-3xl p-8 shadow-xl shadow-slate-200/50 transition-all duration-300" style="z-index: 3;">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div id="step-num-3" class="flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-200 text-slate-400 font-bold text-lg">
+                                    3
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 tracking-tight">전문적 개별 관리</h3>
+                            </div>
+                            <p class="text-lg text-slate-500 leading-relaxed font-light">
+                                각 학생의 학습 진도와 약점을 세밀하게 분석하여 맞춤형 피드백을 제공합니다.
+                            </p>
+                        </div>
+
+                        <!-- Step 4 Card -->
+                        <div id="step-4" class="sticky top-56 bg-white border border-slate-200 rounded-3xl p-8 shadow-xl shadow-slate-200/50 transition-all duration-300" style="z-index: 4;">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div id="step-num-4" class="flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-200 text-slate-400 font-bold text-lg">
+                                    4
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-900 tracking-tight">소수정예 최대 6명</h3>
+                            </div>
+                            <p class="text-lg text-slate-500 leading-relaxed font-light">
+                                소규모 그룹으로 운영되어 개별 학생에게 더 많은 관심과 지도가 가능합니다.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-white text-slate-900 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">수업 안내</h2>
+                <div class="w-12 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-8"></div>
+                
+                <!-- Toggle Buttons -->
+                <div class="flex justify-center gap-4 mb-6">
+                    <button id="btn-regular" class="px-6 py-2 rounded-full bg-blue-600 text-white font-semibold transition-all hover:bg-blue-500 shadow-md shadow-blue-200">
+                        정규반
+                    </button>
+                    <button id="btn-vacation" class="px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-500 font-semibold transition-all hover:border-blue-500 hover:text-blue-600">
+                        방학특강
+                    </button>
+                </div>
 
-    <!-- Naver Maps API -->
-    <script
-      type="text/javascript"
-      src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID"
-    ></script>
+                <p class="text-slate-500">월/수 운영, 개별 맞춤 교재로 진행하는 5-Skills 통합 교육</p>
+            </div>
+
+            <!-- Regular Class Grid -->
+            <div id="pricing-regular" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-300">
+                <!-- Card 1 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="inline-block bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        초등 A반
+                    </div>
+                    <div class="text-slate-500 text-sm mb-2">월/수 14:10 - 15:50</div>
+                    <div class="text-4xl font-bold mb-8 text-slate-900">21만원</div>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 개별 맞춤 교재
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 5-Skills 통합 수업
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 개인별 진도 관리
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="inline-block bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        초등 B반
+                    </div>
+                    <div class="text-slate-500 text-sm mb-2">월/수 15:00 - 16:50</div>
+                    <div class="text-4xl font-bold mb-8 text-slate-900">23만원</div>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 개별 맞춤 교재
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 5-Skills 통합 수업
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 개인별 진도 관리
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="inline-block bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        중등부
+                    </div>
+                    <div class="text-slate-500 text-sm mb-2">월/수 17:00 - 19:30</div>
+                    <div class="text-4xl font-bold mb-8 text-slate-900">27만원</div>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 개별 맞춤 교재
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 내신/수능 대비
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 고급 과정
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-8 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="inline-block bg-blue-50 text-blue-600 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        고등부
+                    </div>
+                    <div class="text-slate-500 text-sm mb-2">월/수 19:30 - 22:00</div>
+                    <div class="text-4xl font-bold mb-8 text-slate-900">33만원</div>
+                    <ul class="space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 내신/수능 대비
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 개별 심화 관리
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-blue-500"></i> 입시 완벽 준비
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Vacation Special Content (Hidden by Default) -->
+            <div id="pricing-vacation" class="hidden flex-col gap-8 transition-all duration-300 items-center">
+                <!-- Pricing Summary -->
+                <div class="flex flex-col md:flex-row gap-6 w-full max-w-4xl">
+                    <div class="flex-1 bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm hover:border-yellow-400 transition-colors">
+                        <div class="inline-block bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full text-xs font-bold mb-3">초등부</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">겨울방학 집중반</h4>
+                        <div class="text-3xl font-bold text-slate-900">21만원</div>
+                    </div>
+                    <div class="flex-1 bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm hover:border-blue-500 transition-colors">
+                        <div class="inline-block bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-3">중등부</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">겨울방학 실력반</h4>
+                        <div class="text-3xl font-bold text-slate-900">27만원</div>
+                    </div>
+                </div>
+
+                <img src="vac_time.png" alt="Vacation Schedule" class="w-full max-w-4xl rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200">
+                <img src="deep_curi.png" alt="Deep Curriculum" class="w-full max-w-4xl rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section class="py-24 bg-white text-slate-900 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <!-- Phone Consultation Card -->
+                <div id="phone-consultation" class="bg-white border border-slate-200 rounded-3xl p-10 text-center hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="flex justify-center mb-6">
+                        <i data-lucide="phone" class="w-8 h-8 text-slate-400 group-hover:text-blue-600 transition-colors"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">전화 상담</h3>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        언제든지 편하게 전화주세요<br>
+                        상담 및 방문 상담 가능합니다
+                    </p>
+                    <a href="tel:01024900532" class="inline-block w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-500 transition-all mb-8">
+                        010.2490.0532
+                    </a>
+                    <div class="text-sm text-slate-500 space-y-1">
+                        <div>평일 10:00 - 22:00</div>
+                        <div>토요일 10:00 - 18:00</div>
+                    </div>
+                </div>
+
+                <!-- Location Guide Card -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-10 text-center hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group">
+                    <div class="flex justify-center mb-6">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-red-500 group-hover:text-red-600 transition-colors"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">위치 안내</h3>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        서울 송파구 거여동 290-1<br>
+                        거여세신종합상가 610호
+                    </p>
+                    <a href="https://map.naver.com/p/search/%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4/place/1478910981?placePath=/home?entry=pll&from=nx&fromNxList=true&fromPanelNum=2&timestamp=202512291537&locale=ko&svcName=map_pcv5&searchText=%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4&searchType=place&c=15.00,0,0,0,dh" target="_blank" class="inline-block w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-500 transition-all mb-8">
+                        네이버 지도 보기
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-32 bg-white relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <blockquote class="mb-12">
+                <p class="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-slate-900 leading-tight">
+                    “원장으로서 가장 중요하게 생각한 것은<br>‘정말 도움이 되는 영어인가’였습니다. 형식보다 결과를 만드는 수업, 그 방향으로 학원을 운영하고 있습니다.”
+                </p>
+            </blockquote>
+            
+            <div class="flex flex-col items-center">
+                <div class="font-semibold text-slate-900 text-lg">Erika Im</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark Footer Section -->
+    <footer class="bg-black text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 md:gap-8 mb-24">
+                
+                <!-- CTA Column -->
+                <div class="max-w-xl">
+                    <h2 class="text-5xl md:text-6xl font-semibold tracking-tight mb-8">
+                        헤이영어와<br>함께 하세요
+                    </h2>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+                        지금 바로 헤이영어와 함께 프리미엄 영어 교육을 시작하세요.
+                    </p>
+                </div>
+
+                <!-- Links Columns -->
+                <div class="grid grid-cols-2 gap-8 md:pl-20">
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-6">Company</h4>
+                        <ul class="space-y-4">
+                            <li><a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">학원 소개</a></li>
+                            <li><a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">채용 안내</a></li>
+                            <li><a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">언론 보도</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-6">Support</h4>
+                        <ul class="space-y-4">
+                            <li><a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">고객 센터</a></li>
+                            <li><a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">개인정보 처리방침</a></li>
+                            <li><a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">이용 약관</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <div class="flex flex-col md:flex-row gap-4 items-center">
+                    <p>© 2024 HeyEnglish Inc. All rights reserved.</p>
+                    <span class="hidden md:block text-slate-700">|</span>
+                    <p>등록번호: 348-97-01842</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
-      // Naver Map 초기화
-      function initNaverMap() {
-        if (typeof naver !== "undefined" && naver.maps) {
-          // 거여세신종합상가 좌표 (서울 송파구 거여동 290-1)
-          const location = new naver.maps.LatLng(37.4789, 127.1369);
+        lucide.createIcons();
 
-          const mapOptions = {
-            center: location,
-            zoom: 16,
-            mapTypeControl: false,
-            logoControl: false,
-            mapDataControl: false,
-            scaleControl: false,
-            tileDuration: 200,
-            backgroundMap: {
-              fillColor: "#1a1a1a",
-              strokeColor: "#2a2a2a",
-            },
-          };
+        // Intersection Observer for Scroll Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = [
+                { id: 'step-1', numId: 'step-num-1', title: '개별 맞춤 커리큘럼', subtitle: 'Step 1 of 4' },
+                { id: 'step-2', numId: 'step-num-2', title: '5-Skills 통합교육', subtitle: 'Step 2 of 4' },
+                { id: 'step-3', numId: 'step-num-3', title: '전문적 개별 관리', subtitle: 'Step 3 of 4' },
+                { id: 'step-4', numId: 'step-num-4', title: '소수정예 최대 6명', subtitle: 'Step 4 of 4' }
+            ];
 
-          const map = new naver.maps.Map("naverMapMini", mapOptions);
+            const stepIndicator = document.getElementById('step-indicator');
+            const stepTitle = document.getElementById('step-title');
 
-          // 마커 추가
-          const marker = new naver.maps.Marker({
-            position: location,
-            map: map,
-            title: "HEY English - 거여세신종합상가 610호",
-            icon: {
-              content:
-                '<div style="background: #4f46e5; color: white; padding: 8px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);">🏫 HEY English</div>',
-              anchor: new naver.maps.Point(50, 30),
-            },
-          });
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeStep = steps.find(s => s.id === entry.target.id);
+                        if (activeStep) {
+                            // Update Floating Card Text
+                            stepIndicator.textContent = activeStep.subtitle;
+                            stepTitle.textContent = activeStep.title;
 
-          // 인포윈도우 추가
-          const infoWindow = new naver.maps.InfoWindow({
-            content:
-              '<div style="padding: 10px; font-size: 14px; color: #333;"><strong>HEY English</strong><br>거여세신종합상가 610호<br>📞 010-2490-0532</div>',
-          });
-
-          // 마커 클릭 이벤트
-          naver.maps.Event.addListener(marker, "click", function () {
-            if (infoWindow.getMap()) {
-              infoWindow.close();
-            } else {
-              infoWindow.open(map, marker);
-            }
-          });
-        } else {
-          // Naver Maps API가 로드되지 않은 경우 대체 지도 표시
-          document.getElementById("naverMapMini").innerHTML =
-            '<div style="display: flex; align-items: center; justify-content: center; height: 200px; background: rgba(255,255,255,0.1); border-radius: 16px; color: #fff;"><p>📍 서울 송파구 거여동 290-1<br>거여세신종합상가 610호</p></div>';
-        }
-      }
-
-      // 네이버 지도 열기 함수
-      function openNaverMap() {
-        // 헤이영어 네이버 지도 페이지로 직접 이동
-        const naverMapUrl = "https://map.naver.com/p/search/%ED%97%A4%EC%9D%B4%EC%98%81%EC%96%B4/place/1478910981?placePath=?entry=pll&from=nx&fromNxList=true&searchType=place&c=14.91,0,0,0,dh";
-        window.open(naverMapUrl, "_blank");
-      }
-
-      // Optimized Scroll Progress Bar
-      window.addEventListener("scroll", requestTick, { passive: true });
-
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+                            // Update Number Bubbles
+                            steps.forEach(step => {
+                                const numEl = document.getElementById(step.numId);
+                                if (step.id === activeStep.id) {
+                                    // Active State
+                                    numEl.className = 'flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 text-white font-bold text-lg shadow-lg shadow-slate-900/20 transition-transform duration-300 scale-110';
+                                } else {
+                                    // Inactive State
+                                    numEl.className = 'flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-slate-200 text-slate-400 font-bold text-lg transition-all duration-300';
+                                }
+                            });
+                        }
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '-40% 0px -40% 0px', // Trigger when element is in the middle of viewport
+                threshold: 0
             });
-          }
-        });
-      });
 
-      // Enhanced Intersection Observer with staggered animations
-      const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -100px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0) scale(1)";
-              entry.target.classList.add("animate-in");
-            }, index * 150);
-          }
-        });
-      }, observerOptions);
-
-      // Setup animation elements with better initial states
-      document
-        .querySelectorAll(".feature-card, .schedule-card, .info-item")
-        .forEach((el, index) => {
-          el.style.opacity = "0";
-          el.style.transform = "translateY(40px) scale(0.95)";
-          el.style.transition =
-            "opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
-          el.style.transitionDelay = `${index * 0.1}s`;
-          observer.observe(el);
-        });
-
-      // Consultation function
-      function openConsultation() {
-        alert(
-          "상담 신청 폼으로 이동합니다.\n(실제 구현시 상담 신청 페이지나 카카오톡 링크로 연결)"
-        );
-      }
-
-      // Enhanced Interactive Effects
-      document
-        .querySelectorAll(".schedule-card, .feature-card, .info-item")
-        .forEach((card) => {
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-          });
-
-          card.addEventListener("mouseleave", () => {
-            card.style.transform =
-              "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
-          });
-        });
-
-      // Parallax Effect for Background Elements
-      window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-
-        document
-          .querySelectorAll(
-            ".hero::before, .features::before, .schedule::before"
-          )
-          .forEach((el) => {
-            if (el) {
-              el.style.transform = `translateY(${rate}px)`;
-            }
-          });
-      });
-
-      // Magnetic Effect for CTA Buttons
-      document.querySelectorAll(".cta-hero, .cta-button").forEach((button) => {
-        button.addEventListener("mousemove", (e) => {
-          const rect = button.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-
-          const deltaX = (x - centerX) / 10;
-          const deltaY = (y - centerY) / 10;
-
-          button.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-        });
-
-        button.addEventListener("mouseleave", () => {
-          button.style.transform = "translate(0px, 0px)";
-        });
-      });
-
-      // Enhanced Loading States with Scroll Stack
-      window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-
-        // Initialize Naver Map
-        setTimeout(initNaverMap, 1000); // 1초 후 지도 초기화
-
-        // Initialize scroll stack effect
-        updateScrollEffects();
-
-        // Reveal animations with stagger
-        const cards = document.querySelectorAll(
-          ".feature-card, .schedule-card, .info-item"
-        );
-        cards.forEach((card, index) => {
-          setTimeout(() => {
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          }, index * 100);
-        });
-
-        // Add intersection observer for stack sections
-        const stackObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("stack-visible");
-              }
+            steps.forEach(step => {
+                const el = document.getElementById(step.id);
+                if (el) observer.observe(el);
             });
-          },
-          {
-            threshold: 0.1,
-            rootMargin: "50px",
-          }
-        );
 
-        document.querySelectorAll(".stack-section").forEach((section) => {
-          stackObserver.observe(section);
-        });
-      });
+            // Pricing Toggle Logic
+            const btnRegular = document.getElementById('btn-regular');
+            const btnVacation = document.getElementById('btn-vacation');
+            const pricingRegular = document.getElementById('pricing-regular');
+            const pricingVacation = document.getElementById('pricing-vacation');
 
-      // Enhanced Scroll Stack Effect
-      let ticking = false;
+            function togglePricing(type) {
+                if (type === 'regular') {
+                    // Show Regular
+                    pricingRegular.classList.remove('hidden');
+                    pricingRegular.classList.add('grid');
+                    pricingRegular.style.display = 'grid';
+                    
+                    pricingVacation.classList.add('hidden');
+                    pricingVacation.classList.remove('flex');
+                    pricingVacation.style.display = 'none';
 
-      function updateScrollEffects() {
-        const scrollTop = document.documentElement.scrollTop;
-        const scrollHeight =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-        const progress = (scrollTop / scrollHeight) * 100;
+                    // Update Buttons
+                    btnRegular.className = 'px-6 py-2 rounded-full bg-blue-600 text-white font-semibold transition-all hover:bg-blue-500 shadow-md shadow-blue-200';
+                    btnVacation.className = 'px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-500 font-semibold transition-all hover:border-blue-500 hover:text-blue-600';
+                } else {
+                    // Show Vacation
+                    pricingVacation.classList.remove('hidden');
+                    pricingVacation.classList.add('flex');
+                    pricingVacation.style.display = 'flex';
+                    
+                    pricingRegular.classList.add('hidden');
+                    pricingRegular.classList.remove('grid');
+                    pricingRegular.style.display = 'none';
 
-        // Update progress bar
-        document.getElementById("scrollProgress").style.width = progress + "%";
-
-        // Update scroll stack effect
-        const sections = document.querySelectorAll(".stack-section");
-
-        sections.forEach((section, index) => {
-          const rect = section.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-
-          // Calculate if section is in viewport
-          const isVisible = rect.top < windowHeight && rect.bottom > 0;
-
-          if (isVisible) {
-            // Calculate scroll progress for this section
-            const sectionProgress = Math.max(
-              0,
-              Math.min(1, (windowHeight - rect.top) / windowHeight)
-            );
-
-            // Apply scaling effect based on scroll progress
-            const scale = 0.8 + sectionProgress * 0.2; // Scale from 0.8 to 1
-            const translateY = (1 - sectionProgress) * 100; // Move up as it comes into view
-
-            section.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-
-            // Apply stacking effect for sections below
-            if (rect.top <= 0) {
-              const stackProgress = Math.abs(rect.top) / rect.height;
-              const stackScale = Math.max(0.7, 1 - stackProgress * 0.3);
-              const stackY = Math.min(0, stackProgress * -50);
-
-              section.style.transform = `scale(${stackScale}) translateY(${stackY}px)`;
+                    // Update Buttons
+                    btnVacation.className = 'px-6 py-2 rounded-full bg-blue-600 text-white font-semibold transition-all hover:bg-blue-500 shadow-md shadow-blue-200';
+                    btnRegular.className = 'px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-500 font-semibold transition-all hover:border-blue-500 hover:text-blue-600';
+                }
             }
-          } else {
-            // Reset transform for sections not in viewport
-            section.style.transform = "scale(0.8) translateY(100px)";
-          }
+
+            btnRegular.addEventListener('click', () => togglePricing('regular'));
+            btnVacation.addEventListener('click', () => togglePricing('vacation'));
         });
-
-        ticking = false;
-      }
-
-      function requestTick() {
-        if (!ticking) {
-          requestAnimationFrame(updateScrollEffects);
-          ticking = true;
-        }
-      }
     </script>
-  </body>
-</html>
+
+</body></html>
