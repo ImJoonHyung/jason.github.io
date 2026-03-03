@@ -230,9 +230,12 @@
                     <button id="btn-regular" class="px-6 py-2 rounded-full bg-blue-600 text-white font-semibold transition-all hover:bg-blue-500 shadow-md shadow-blue-200">
                         정규반
                     </button>
-                    <button id="btn-vacation" class="px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-500 font-semibold transition-all hover:border-blue-500 hover:text-blue-600">
-                        방학특강
-                    </button>
+                    <div class="relative">
+                        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full shadow-sm whitespace-nowrap z-10 pointer-events-none">마감</span>
+                        <button id="btn-vacation" class="px-6 py-2 rounded-full bg-white border border-slate-200 text-slate-500 font-semibold transition-all hover:border-blue-500 hover:text-blue-600">
+                            방학특강
+                        </button>
+                    </div>
                 </div>
 
 
@@ -322,22 +325,15 @@
 
             <!-- Vacation Special Content (Hidden by Default) -->
             <div id="pricing-vacation" class="hidden flex-col gap-8 transition-all duration-300 items-center">
-                <!-- Pricing Summary -->
-                <div class="flex flex-col md:flex-row gap-6 w-full max-w-4xl">
-                    <div class="flex-1 bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm hover:border-yellow-400 transition-colors">
-                        <div class="inline-block bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full text-xs font-bold mb-3">초등부</div>
-                        <h4 class="text-lg font-bold text-slate-900 mb-1">겨울방학 집중반</h4>
-                        <div class="text-3xl font-bold text-slate-900">21만원</div>
+                <div class="py-20 text-center flex flex-col items-center">
+                    <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="info" class="w-8 h-8 text-slate-400"></i>
                     </div>
-                    <div class="flex-1 bg-white border border-slate-200 rounded-2xl p-6 text-center shadow-sm hover:border-blue-500 transition-colors">
-                        <div class="inline-block bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-3">중등부</div>
-                        <h4 class="text-lg font-bold text-slate-900 mb-1">겨울방학 실력반</h4>
-                        <div class="text-3xl font-bold text-slate-900">27만원</div>
-                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">방학특강이 마감되었습니다</h3>
+                    <p class="text-slate-500">
+                        성원에 감사드립니다. 다음 특강 일정이 확정되는 대로 안내해 드리겠습니다.
+                    </p>
                 </div>
-
-                <img src="vac_time.png" alt="Vacation Schedule" class="w-full max-w-4xl rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200">
-                <img src="deep_curi.png" alt="Deep Curriculum" class="w-full max-w-4xl rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200">
             </div>
         </div>
     </section>
